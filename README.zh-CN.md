@@ -224,6 +224,10 @@ codex login
 npm run build
 ```
 
+## 致谢
+
+感谢 [`llm-for-zotero`](https://github.com/yilewang/llm-for-zotero) 及其开发者，提供了这次 vibe coding 所基于的基础模板和灵感。
+
 ## License
 
 MIT

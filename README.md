@@ -235,6 +235,10 @@ Build:
 npm run build
 ```
 
+## Acknowledgements
+
+Thanks to [`llm-for-zotero`](https://github.com/yilewang/llm-for-zotero) and its developers for providing the basic template and inspiration that made this vibe-coding build possible.
+
 ## License
 
 MIT
