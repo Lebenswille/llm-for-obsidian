@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"minAppVersion": "1.5.0",
 	"description": "LLM assistant for Obsidian in the right side panel",
-	"author": "Yile Wang (Ported)",
-	"authorUrl": "",
+	"author": "Lebenswille",
+	"authorUrl": "https://github.com/Lebenswille",
 	"isDesktopOnly": false
 }
