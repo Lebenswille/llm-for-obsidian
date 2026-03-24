@@ -1,69 +1,135 @@
 # LLM for Obsidian
 
-`LLM for Obsidian` 是一个侧边栏聊天插件，可以在 Obsidian 中直接和大语言模型对话，并结合当前笔记、附件、PDF 和快捷提示词完成总结、翻译、问答等工作。
+An Obsidian sidebar assistant for chatting with LLMs using your current note, attached files, and PDFs.
 
-它的目标不是做一个独立聊天应用，而是把 LLM 能力嵌进你的知识库工作流里：
+一个 Obsidian 侧边栏 AI 助手，可结合当前笔记、附件和 PDF 进行问答、总结、翻译与整理。
 
-- 在右侧边栏直接提问
-- 自动结合当前笔记或附加文件上下文
+## Overview | 项目简介
+
+`LLM for Obsidian` brings LLM workflows directly into your vault instead of forcing you to leave Obsidian for a separate chat app.
+
+It is designed for note-centric work:
+
+- Ask questions about the current note or PDF
+- Attach Markdown, text, and PDF files as context
+- Switch between multiple model providers
+- Save replies back into notes
+- Reuse quick prompts
+- Keep per-file conversation history
+- Support both API Key auth and Codex Auth
+
+`LLM for Obsidian` 的目标不是做一个独立聊天工具，而是把大模型能力直接嵌入 Obsidian 工作流。
+
+它适合：
+
+- 围绕当前笔记或 PDF 提问
+- 为模型附加 Markdown / TXT / PDF 上下文
+- 快速切换多个模型
+- 将回复保存回笔记
+- 使用快捷提示词
+- 按文件维度保留聊天历史
+- 同时支持 API Key 和 Codex Auth
+
+## Features | 功能特性
+
+### English
+
+- Sidebar chat panel in Obsidian
+- Context-aware chatting with current note and attachments
+- Markdown / TXT / PDF support
+- Quick prompt buttons with settings-page management
+- Multi-model configuration and switching
+- Provider presets for mainstream models
+- Codex support via local `codex login`
+- Conversation history grouped by active file
+- Save assistant output back into notes
+- Auto-create inbox notes for standalone PDFs
+
+### 中文
+
+- Obsidian 右侧边栏聊天面板
+- 自动结合当前笔记与附件上下文
 - 支持 Markdown / TXT / PDF
-- 支持多个模型配置并快速切换
-- 支持快捷 Prompt
-- 支持将回复保存回笔记
-- 支持查看按文件维度保存的聊天历史
-- 支持 API Key 模式和 Codex Auth 模式
+- 支持快捷 Prompt，并可在设置页维护
+- 支持多模型配置和快速切换
+- 内置主流模型预设
+- 支持通过本地 `codex login` 使用 Codex
+- 按当前文件保存聊天历史
+- 支持将回复直接保存回笔记
+- PDF 无关联笔记时自动在 `inbox/` 新建收件箱笔记
 
----
+## Installation | 安装方式
 
-## 功能特性
+### English
 
-### 1. 侧边栏聊天
+Place the plugin under:
 
-插件会在 Obsidian 右侧打开一个聊天面板，你可以：
+```text
+.obsidian/plugins/llm-for-obsidian
+```
 
-- 输入自由问题
-- 使用快捷按钮快速发起常见任务
-- 切换不同模型
-- 附加文件作为上下文
+Required runtime files:
 
-### 2. 文件上下文
+- `manifest.json`
+- `main.js`
+- `styles.css`
 
-发送消息时，插件会尽可能结合当前上下文：
+For local development:
 
-- 当前活动 Markdown 笔记
-- 当前活动 PDF
-- 手动附加的 Markdown / TXT / PDF 文件
+```bash
+npm install
+npm run build
+```
 
-对于 PDF：
+### 中文
 
-- Gemini 原生接口可直接携带 PDF
-- 其余模型会尽量提取 PDF 文本作为上下文发送
+将插件放到：
 
-### 3. 快捷 Prompt
+```text
+.obsidian/plugins/llm-for-obsidian
+```
 
-你可以在设置中维护快捷提示词：
+运行时至少需要：
 
-- 新增快捷项
-- 修改按钮名称
-- 修改 Prompt 内容
-- 删除不需要的快捷项
+- `manifest.json`
+- `main.js`
+- `styles.css`
 
-这些快捷项会显示在输入框上方，点击即可发送。
+本地开发可执行：
 
-### 4. 多模型支持
+```bash
+npm install
+npm run build
+```
 
-插件支持为多个模型分别配置：
+## Getting Started | 快速开始
 
-- 模型名
-- API URL
-- API Key
-- Auth Mode
+### English
 
-可以在聊天面板底部快速切换当前使用的模型。
+1. Enable the plugin in Obsidian.
+2. Open the chat panel from the ribbon icon or command palette.
+3. Configure at least one model in settings.
+4. Open a note or PDF.
+5. Ask a question, use a quick prompt, or attach extra files.
 
-### 5. 主流模型预设
+### 中文
 
-设置页提供常见模型预设，可一键添加，例如：
+1. 在 Obsidian 中启用插件。
+2. 通过侧边图标或命令面板打开聊天面板。
+3. 在设置中配置至少一个模型。
+4. 打开一个笔记或 PDF。
+5. 输入问题，或直接使用快捷 Prompt。
+
+## Model Setup | 模型配置
+
+### Supported styles | 支持的接口类型
+
+- OpenAI-compatible chat completions
+- Anthropic native messages API
+- Gemini native API
+- Codex responses API
+
+### Built-in presets | 内置模型预设
 
 - OpenAI
 - Anthropic
@@ -76,376 +142,257 @@
 - Ollama
 - Codex
 
-### 6. Codex 支持
+### Per-model settings | 单模型可配置项
 
-插件支持使用本地 `codex login` 登录态调用 Codex 模型。
-
-适合不想手动填写 API Key，而是希望复用本地 Codex 凭据的人。
-
-### 7. 聊天历史
-
-聊天记录会按当前文件维度保存到本地：
-
-- 切换不同笔记时，会加载各自的聊天历史
-- 支持开始新会话
-- 支持查看历史会话
-- 支持删除单条历史会话
-
-### 8. 保存回复到笔记
-
-模型回复支持：
-
-- 复制到剪贴板
-- 直接追加到关联笔记
-
-当当前文件是 PDF 时，插件会尝试：
-
-- 找反向链接笔记
-- 或根据 frontmatter 中的 `source`
-- 再不行则退回当前打开的 Markdown 笔记
-
----
-
-## 安装方式
-
-将插件放到你的 Obsidian Vault：
-
-```text
-.obsidian/plugins/llm-for-obsidian
-```
-
-确保目录中至少包含：
-
-- `manifest.json`
-- `main.js`
-- `styles.css`
-
-如果你在本地开发，可运行：
-
-```bash
-npm install
-npm run build
-```
-
----
-
-## 如何打开插件
-
-启用插件后，可以通过以下方式打开：
-
-- 左侧功能区的机器人图标
-- 命令面板中的 `Open LLM Chat View`
-
-插件会在右侧侧边栏打开聊天面板。
-
----
-
-## 设置说明
-
-设置页主要分成三部分：
-
-### 1. General Preferences
-
-#### System Prompt
-
-这里可以修改默认系统提示词。
-
-它会影响模型整体行为，比如：
-
-- 回答风格
-- 是否偏向总结
-- 是否用中文输出
-
----
-
-### 2. LLM for Obsidian Models
-
-这里是模型配置区。
-
-每个模型都可以配置：
-
-#### Provider / Model Name
-
-例如：
-
-- `gpt-4o`
-- `gpt-4.1-mini`
-- `claude-3-5-sonnet-latest`
-- `gemini-2.0-flash`
-- `deepseek-chat`
-- `gpt-5.4`
-
-#### Auth Mode
-
-支持两种模式：
-
+- `Provider / Model Name`
+- `Auth Mode`
+- `API URL`
 - `API Key`
-- `Codex Auth`
+- `Test`
 
-#### API URL
+### Auth Mode | 鉴权模式
 
-不同服务商对应不同地址。
+#### `API Key`
 
-例如：
+Use this for standard hosted providers such as OpenAI-compatible, Anthropic, Gemini, DeepSeek, OpenRouter, Groq, Moonshot, SiliconFlow, and others.
 
-- OpenAI Chat Completions:
-  `https://api.openai.com/v1/chat/completions`
-- Anthropic Messages:
-  `https://api.anthropic.com/v1/messages`
-- Gemini Native:
-  `https://generativelanguage.googleapis.com`
-- Codex Responses:
-  `https://chatgpt.com/backend-api/codex/responses`
+适用于绝大多数普通模型服务商。
 
-#### API Key
+#### `Codex Auth`
 
-当使用 `API Key` 模式时需要填写。
-
-如果使用 `Codex Auth`，这里可以留空。
-
-#### Test
-
-每个模型都有 `Test` 按钮：
-
-- `API Key` 模式会发起一次最小测试请求
-- `Codex Auth` 模式会先检查本地登录态，再测试模型连接
-
----
-
-### 3. Popular Model Presets
-
-可通过下拉快速添加主流模型预设，然后再微调配置。
-
----
-
-### 4. Quick Prompts
-
-用于管理聊天面板中的快捷按钮。
-
-每个快捷项包含：
-
-- `Button Label`
-- `Prompt`
-
----
-
-## Codex Auth 使用方法
-
-如果你想使用 `gpt-5.4` 等 Codex 模型：
-
-### 1. 本地登录 Codex
-
-先在终端执行：
-
-```bash
-codex login
-```
-
-成功后，本地会生成：
+Use your local Codex login credentials from:
 
 ```text
 ~/.codex/auth.json
 ```
 
-### 2. 在插件中添加 Codex 模型
+Recommended Codex config:
 
-推荐配置：
-
-- Model Name: `gpt-5.4`
+- Model: `gpt-5.4`
 - Auth Mode: `Codex Auth`
 - API URL: `https://chatgpt.com/backend-api/codex/responses`
 
-### 3. 点击 Test
+适合希望复用本地 Codex 登录态，而不是手动填写 API Key 的场景。
 
-如果登录态正常，插件会提示测试成功。
+## Using Codex | 使用 Codex
 
----
+### English
 
-## 支持的接口类型
+1. Run:
 
-当前插件主要支持三类接口：
+```bash
+codex login
+```
 
-### OpenAI-Compatible
+2. Add a model in plugin settings.
+3. Set `Auth Mode` to `Codex Auth`.
+4. Use `gpt-5.4` or another supported Codex model name.
+5. Click `Test` to verify the local auth state and model connection.
 
-适用于：
+### 中文
 
-- OpenAI
-- DeepSeek
-- OpenRouter
-- Groq
-- Moonshot
-- SiliconFlow
-- Ollama
+1. 先执行：
 
-默认按 `chat/completions` 方式调用。
+```bash
+codex login
+```
 
-### Anthropic Native
+2. 在插件设置中新增模型。
+3. 将 `Auth Mode` 设为 `Codex Auth`。
+4. 模型名填如 `gpt-5.4`。
+5. 点击 `Test` 验证本地登录态和模型连通性。
 
-按 `v1/messages` 协议调用。
+## Quick Prompts | 快捷提示词
 
-### Gemini Native
+Quick prompts appear above the input box and can be managed in settings.
 
-按 Gemini 原生接口调用，并支持原生 PDF 附件。
+Each prompt has:
 
-### Codex Responses
+- Button label
+- Prompt body
 
-按 Codex responses 流式接口调用，并复用本地 Codex 登录态。
+快捷 Prompt 会显示在输入框上方，并可在设置中维护。
 
----
+每个快捷项包含：
 
-## 使用方式
+- 按钮名称
+- Prompt 内容
 
-### 基本问答
+## Saving Replies | 保存回复
 
-1. 打开一个笔记
-2. 打开 LLM 面板
-3. 输入问题
-4. 选择模型
-5. 点击发送
+### English
 
-### 使用快捷 Prompt
-
-点击输入框上方的快捷按钮，例如：
-
-- `Summarize`
-- `Key Points`
-- `Translate`
-
-### 附加文件
-
-点击输入框左下角的 `+`：
-
-- 如果当前是 PDF，会优先附加当前 PDF
-- 如果当前笔记 frontmatter 中存在 `source`，会尝试自动附加源文件
-- 否则会弹出文件选择框
-
-### 保存回复
-
-在助手回复上方可看到：
+Assistant messages support:
 
 - `Copy`
 - `Save`
 
-`Save` 会把回复追加到关联笔记中。
+When saving from a normal note, content is appended to that note.
 
-### 新建会话
+When saving from a PDF:
 
-点击顶部 `New` 按钮即可在当前文件下新建一个独立会话。
+- The plugin first tries to find an associated Markdown note
+- If none exists, it creates a new note in `inbox/`
 
-### 查看历史
+The new note includes frontmatter like:
 
-点击顶部 `History` 查看当前文件的历史聊天记录。
+```yaml
+source: "[[path/to/file.pdf]]"
+Date: 2026-03-24T19:50:51.668Z
+base: "[[Inbox.base]]"
+Category:
+aliases:
+tags:
+  - llm-generated
+  - pdf-note
+```
 
----
+### 中文
 
-## 数据存储
+助手回复支持：
 
-插件会在目录内保存一些本地数据：
+- `Copy`
+- `Save`
 
-- `data.json`
-  插件配置
-- `llm-history.json`
-  聊天历史
+如果当前是普通笔记，内容会追加到原笔记中。
 
-说明：
+如果当前是 PDF：
 
-- 删除 `data.json` 会重置插件设置
-- 删除 `llm-history.json` 会清空聊天历史
+- 插件会先尝试找到关联 Markdown 笔记
+- 如果找不到，就会在 `inbox/` 下自动新建一篇笔记
 
----
+新建笔记会自动带上 `source`、`Date`、`base`、`Category`、`aliases` 和默认标签。
 
-## 已知限制
+## History | 聊天历史
 
-### 1. Codex Auth 更适合桌面环境
+Conversation history is stored locally per active file.
 
-因为它依赖本地 `codex login` 产生的凭据文件。
+You can:
 
-### 2. 不同 provider 的限制不同
+- Start a new session
+- Open file-specific history
+- Switch between sessions
+- Delete old sessions
 
-不同模型平台可能会出现：
+聊天记录会按当前文件分别保存。
 
-- 401 鉴权失败
-- 403 权限不足
-- 404 模型不存在
-- 429 频率或额度限制
+你可以：
 
-### 3. PDF 提取依赖环境
+- 新建会话
+- 查看当前文件历史
+- 切换旧会话
+- 删除旧会话
 
-非 Gemini 模式下，PDF 文本提取依赖运行环境中可用的 PDF 解析能力。
+## Data Files | 数据文件
 
----
+The plugin stores local runtime data inside its folder.
 
-## 常见问题
+### Important files
 
-### 出现 `429`
+- `data.json`: plugin settings
+- `llm-history.json`: saved chat history
+
+### Notes
+
+- Deleting `data.json` resets settings
+- Deleting `llm-history.json` clears chat history
+
+插件运行时会在目录里保存本地数据：
+
+- `data.json`：插件设置
+- `llm-history.json`：聊天历史
+
+删除它们不会破坏代码，但会丢失对应数据。
+
+## Connection Testing | 模型测试
+
+Each model has a `Test` button in settings.
+
+- `API Key` mode sends a minimal test request
+- `Codex Auth` mode verifies local auth and then tests the model connection
+
+每个模型配置卡片都带有 `Test` 按钮：
+
+- `API Key` 模式会发送最小测试请求
+- `Codex Auth` 模式会先检查本地登录态，再测试模型本身
+
+## Known Limitations | 已知限制
+
+### English
+
+- Codex Auth is mainly intended for desktop environments
+- Different providers may return different error formats
+- PDF extraction quality depends on provider and runtime capabilities
+- Rate limits and quota errors depend on the upstream model provider
+
+### 中文
+
+- Codex Auth 主要适用于桌面环境
+- 不同 provider 的报错格式不同
+- PDF 提取效果依赖运行环境和 provider 能力
+- 额度和频率限制由上游模型服务商决定
+
+## Common Issues | 常见问题
+
+### `429`
+
+Usually means:
+
+- too many requests
+- quota exhausted
+- model access not available
 
 通常表示：
 
-- 请求频率过高
+- 请求过快
 - 额度不足
-- 模型权限不可用
+- 当前账号没有该模型权限
 
-请检查：
+### Codex errors
 
-- API Key
-- 账户额度
-- provider 控制台
-- 模型名是否正确
-
-### Codex 出现登录相关报错
-
-请确认：
+Make sure:
 
 ```bash
 codex login
 ```
 
-已经执行成功，并且本地存在：
+has completed successfully and `~/.codex/auth.json` exists.
 
-```text
-~/.codex/auth.json
-```
-
-### 模型测试失败
-
-请优先检查：
-
-- Model Name
-- API URL
-- API Key / Codex Auth
-- 该模型是否真的在当前 provider 可用
-
----
-
-## 适合的使用场景
-
-这个插件尤其适合：
-
-- 阅读论文时对 PDF 提问
-- 总结笔记内容
-- 将笔记翻译成中文
-- 对当前知识库做上下文问答
-- 把模型回复直接整理回 Obsidian
-
----
-
-## 开发
-
-本地开发常用命令：
+如果 Codex 报错，请优先确认本地已成功执行：
 
 ```bash
-npm install
-npm run build
+codex login
 ```
 
-源码主要位于：
+并且存在 `~/.codex/auth.json`。
+
+## Development | 开发说明
+
+Main source files:
 
 - `src/main.ts`
 - `src/ChatView.ts`
 - `src/llmClient.ts`
 - `styles.css`
 
----
+Build:
+
+```bash
+npm run build
+```
+
+主要源码文件：
+
+- `src/main.ts`
+- `src/ChatView.ts`
+- `src/llmClient.ts`
+- `styles.css`
+
+构建命令：
+
+```bash
+npm run build
+```
 
 ## License
 
