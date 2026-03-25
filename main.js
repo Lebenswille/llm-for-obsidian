@@ -44,6 +44,7 @@ async function callLlmApi(apiUrl, apiKey, model, messages, attachments = [], aut
     throw new Error("API Key is empty. Please configure it in settings.");
   const isGoogleGemini = apiUrl.includes("generativelanguage.googleapis.com");
   const isAnthropic = apiUrl.includes("api.anthropic.com");
+  const isOfficialOpenAI = isOfficialOpenAiApiUrl(apiUrl);
   const isCodexResponses = authMode === "codex_auth" || apiUrl.includes("chatgpt.com/backend-api/codex/responses");
   if (isCodexResponses) {
     const auth = await resolveCodexAuthState();
@@ -135,10 +136,7 @@ async function callLlmApi(apiUrl, apiKey, model, messages, attachments = [], aut
       finalUrl = finalUrl.replace(/\/$/, "") + "/v1/messages";
     }
     const systemMessages = messages.filter((m) => m.role === "system").map((m) => m.content.trim()).filter(Boolean);
-    const chatMessages = messages.filter((m) => m.role !== "system").map((m) => ({
-      role: m.role,
-      content: [{ type: "text", text: m.content }]
-    }));
+    const chatMessages = buildAnthropicMessages(messages, attachments);
     const payload = {
       model,
       messages: chatMessages,
@@ -173,7 +171,11 @@ async function callLlmApi(apiUrl, apiKey, model, messages, attachments = [], aut
       "Content-Type": "application/json",
       "Authorization": `Bearer ${apiKey}`
     };
-    const payload = {
+    const payload = isOfficialOpenAI ? {
+      model,
+      messages: buildOpenAiChatMessages(messages, attachments),
+      temperature: 0.7
+    } : {
       model,
       messages,
       temperature: 0.7
@@ -200,6 +202,64 @@ async function callLlmApi(apiUrl, apiKey, model, messages, attachments = [], aut
       throw new Error(e.message || "API Request Failed");
     }
   }
+}
+function buildAnthropicMessages(messages, attachments) {
+  const pdfAttachments = attachments.filter((attachment) => attachment.mimeType === "application/pdf");
+  const lastUserIndex = findLastUserMessageIndex(messages);
+  return messages.filter((message) => message.role !== "system").map((message, index) => {
+    const content = [];
+    if (message.role === "user" && index === lastUserIndex && pdfAttachments.length > 0) {
+      for (const attachment of pdfAttachments) {
+        content.push({
+          type: "document",
+          source: {
+            type: "base64",
+            media_type: attachment.mimeType,
+            data: attachment.data
+          }
+        });
+      }
+    }
+    content.push({
+      type: "text",
+      text: message.content
+    });
+    return {
+      role: message.role,
+      content
+    };
+  });
+}
+function buildOpenAiChatMessages(messages, attachments) {
+  const pdfAttachments = attachments.filter((attachment) => attachment.mimeType === "application/pdf");
+  const lastUserIndex = findLastUserMessageIndex(messages);
+  return messages.map((message, index) => {
+    if (message.role !== "user" || index !== lastUserIndex || pdfAttachments.length === 0) {
+      return message;
+    }
+    const content = pdfAttachments.map((attachment) => ({
+      type: "file",
+      file: {
+        filename: attachment.name,
+        file_data: `data:${attachment.mimeType};base64,${attachment.data}`
+      }
+    }));
+    content.push({
+      type: "text",
+      text: message.content
+    });
+    return {
+      role: message.role,
+      content
+    };
+  });
+}
+function findLastUserMessageIndex(messages) {
+  for (let index = messages.length - 1; index >= 0; index--) {
+    if (messages[index].role === "user")
+      return index;
+  }
+  return -1;
 }
 async function postCodexRequest(params) {
   const finalUrl = normalizeCodexApiUrl(params.apiUrl);
@@ -297,6 +357,9 @@ function extractCodexTextFromSSE(raw) {
 function normalizeCodexApiUrl(apiUrl) {
   const trimmed = apiUrl.trim();
   return trimmed || DEFAULT_CODEX_API_BASE;
+}
+function isOfficialOpenAiApiUrl(apiUrl) {
+  return apiUrl.includes("api.openai.com");
 }
 async function resolveCodexAuthState() {
   var _a, _b, _c, _d;
@@ -728,11 +791,7 @@ var ChatView = class extends import_obsidian2.ItemView {
           this.textarea.style.height = this.textarea.scrollHeight + "px";
         });
         addBtn("\u{1F4DD} New Note", async () => {
-          const fn = `LLM-Extract-${Date.now()}.md`;
-          const nf = await this.app.vault.create(fn, `# LLM Extract
-
-${text}`);
-          this.app.workspace.getLeaf(true).openFile(nf);
+          await this.appendToAssociatedNote(text, "Extract");
         });
       }, 50);
     });
@@ -938,12 +997,15 @@ ${content}
       if (active && !files.find((f) => f.path === active.path))
         files.push(active);
       const isGemini = config.apiUrl.includes("generativelanguage");
+      const isAnthropic = config.apiUrl.includes("api.anthropic.com");
+      const isOfficialOpenAI = config.apiUrl.includes("api.openai.com");
       const nativeAttachments = [];
       for (const file of files) {
         if (file.extension === "pdf") {
           const buffer = await this.app.vault.readBinary(file);
-          if (isGemini)
+          if (isGemini || isAnthropic || isOfficialOpenAI) {
             nativeAttachments.push({ name: file.name, mimeType: "application/pdf", data: this.arrayBufferToBase64(buffer) });
+          }
           const pdfjs = window.pdfjsLib;
           if (pdfjs) {
             const pdf = await pdfjs.getDocument({ data: new Uint8Array(buffer) }).promise;

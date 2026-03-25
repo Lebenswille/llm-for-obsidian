@@ -23,6 +23,7 @@
 - Obsidian 右侧边栏聊天面板
 - 自动结合当前笔记与附件上下文
 - 支持 Markdown / TXT / PDF
+- OpenAI、Anthropic、Gemini 支持原生 PDF 输入
 - 支持快捷 Prompt，并可在设置页维护
 - 支持多模型配置和快速切换
 - 内置主流模型预设
@@ -68,6 +69,12 @@ npm run build
 - Anthropic native messages API
 - Gemini native API
 - Codex responses API
+
+### PDF 处理方式
+
+- OpenAI、Anthropic、Gemini 支持原生 PDF 输入
+- 其他 provider 会回退为提取 PDF 文本后作为上下文发送
+- 当前 PDF 文本提取仍依赖运行环境中的 PDF.js 能力和上游 provider 表现
 
 ### 内置模型预设
 

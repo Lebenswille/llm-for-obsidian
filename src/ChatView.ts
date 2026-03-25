@@ -250,9 +250,7 @@ export class ChatView extends ItemView {
                     this.textarea.focus(); this.textarea.style.height = 'auto'; this.textarea.style.height = this.textarea.scrollHeight + 'px';
                 });
                 addBtn('📝 New Note', async () => {
-                    const fn = `LLM-Extract-${Date.now()}.md`;
-                    const nf = await this.app.vault.create(fn, `# LLM Extract\n\n${text}`);
-                    this.app.workspace.getLeaf(true).openFile(nf);
+                    await this.appendToAssociatedNote(text, 'Extract');
                 });
             }, 50);
         });
@@ -453,11 +451,15 @@ ${content}
             const active = this.app.workspace.getActiveFile();
             if (active && !files.find(f => f.path === active.path)) files.push(active);
             const isGemini = config.apiUrl.includes('generativelanguage');
+            const isAnthropic = config.apiUrl.includes('api.anthropic.com');
+            const isOfficialOpenAI = config.apiUrl.includes('api.openai.com');
             const nativeAttachments: FileAttachment[] = [];
             for (const file of files) {
                 if (file.extension === 'pdf') {
                     const buffer = await this.app.vault.readBinary(file);
-                    if (isGemini) nativeAttachments.push({ name: file.name, mimeType: 'application/pdf', data: this.arrayBufferToBase64(buffer) });
+                    if (isGemini || isAnthropic || isOfficialOpenAI) {
+                        nativeAttachments.push({ name: file.name, mimeType: 'application/pdf', data: this.arrayBufferToBase64(buffer) });
+                    }
                     const pdfjs = (window as any).pdfjsLib;
                     if (pdfjs) {
                         const pdf = await pdfjs.getDocument({ data: new Uint8Array(buffer) }).promise;

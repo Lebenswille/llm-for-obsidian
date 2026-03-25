@@ -23,6 +23,7 @@ It is designed for note-centric work:
 - Sidebar chat panel in Obsidian
 - Context-aware chatting with current note and attachments
 - Markdown / TXT / PDF support
+- Native PDF input for OpenAI, Anthropic, and Gemini
 - Quick prompt buttons with settings-page management
 - Multi-model configuration and switching
 - Provider presets for mainstream models
@@ -68,6 +69,12 @@ npm run build
 - Anthropic native messages API
 - Gemini native API
 - Codex responses API
+
+### PDF handling
+
+- OpenAI, Anthropic, and Gemini support native PDF input
+- Other providers fall back to extracted PDF text as context
+- PDF text extraction currently depends on runtime PDF.js availability and provider behavior
 
 ### Built-in presets
 

@@ -38,6 +38,7 @@ export async function callLlmApi(
 
     const isGoogleGemini = apiUrl.includes('generativelanguage.googleapis.com');
     const isAnthropic = apiUrl.includes('api.anthropic.com');
+    const isOfficialOpenAI = isOfficialOpenAiApiUrl(apiUrl);
     const isCodexResponses = authMode === 'codex_auth' || apiUrl.includes('chatgpt.com/backend-api/codex/responses');
 
     if (isCodexResponses) {
@@ -145,12 +146,7 @@ export async function callLlmApi(
         }
 
         const systemMessages = messages.filter(m => m.role === 'system').map(m => m.content.trim()).filter(Boolean);
-        const chatMessages = messages
-            .filter(m => m.role !== 'system')
-            .map(m => ({
-                role: m.role,
-                content: [{ type: 'text', text: m.content }]
-            }));
+        const chatMessages = buildAnthropicMessages(messages, attachments);
 
         const payload: any = {
             model,
@@ -194,11 +190,17 @@ export async function callLlmApi(
             'Authorization': `Bearer ${apiKey}`
         };
 
-        const payload = {
-            model,
-            messages,
-            temperature: 0.7
-        };
+        const payload = isOfficialOpenAI
+            ? {
+                model,
+                messages: buildOpenAiChatMessages(messages, attachments),
+                temperature: 0.7
+            }
+            : {
+                model,
+                messages,
+                temperature: 0.7
+            };
 
         let finalUrl = apiUrl.trim();
         if (!finalUrl.endsWith('/chat/completions')) {
@@ -224,6 +226,77 @@ export async function callLlmApi(
             throw new Error(e.message || 'API Request Failed');
         }
     }
+}
+
+function buildAnthropicMessages(messages: ChatMessage[], attachments: FileAttachment[]) {
+    const pdfAttachments = attachments.filter((attachment) => attachment.mimeType === 'application/pdf');
+    const lastUserIndex = findLastUserMessageIndex(messages);
+
+    return messages
+        .filter((message) => message.role !== 'system')
+        .map((message, index) => {
+            const content: Array<Record<string, unknown>> = [];
+
+            if (message.role === 'user' && index === lastUserIndex && pdfAttachments.length > 0) {
+                for (const attachment of pdfAttachments) {
+                    content.push({
+                        type: 'document',
+                        source: {
+                            type: 'base64',
+                            media_type: attachment.mimeType,
+                            data: attachment.data
+                        }
+                    });
+                }
+            }
+
+            content.push({
+                type: 'text',
+                text: message.content
+            });
+
+            return {
+                role: message.role,
+                content
+            };
+        });
+}
+
+function buildOpenAiChatMessages(messages: ChatMessage[], attachments: FileAttachment[]) {
+    const pdfAttachments = attachments.filter((attachment) => attachment.mimeType === 'application/pdf');
+    const lastUserIndex = findLastUserMessageIndex(messages);
+
+    return messages.map((message, index) => {
+        if (message.role !== 'user' || index !== lastUserIndex || pdfAttachments.length === 0) {
+            return message;
+        }
+
+        const content: Array<Record<string, unknown>> = pdfAttachments.map((attachment) => ({
+            type: 'file',
+            file: {
+                filename: attachment.name,
+                file_data: `data:${attachment.mimeType};base64,${attachment.data}`
+            }
+        }));
+
+        content.push({
+            type: 'text',
+            text: message.content
+        });
+
+        return {
+            role: message.role,
+            content
+        };
+    });
+}
+
+function findLastUserMessageIndex(messages: ChatMessage[]) {
+    for (let index = messages.length - 1; index >= 0; index--) {
+        if (messages[index].role === 'user') return index;
+    }
+
+    return -1;
 }
 
 async function postCodexRequest(params: {
@@ -350,6 +423,10 @@ function extractCodexTextFromSSE(raw: string): string {
 function normalizeCodexApiUrl(apiUrl: string): string {
     const trimmed = apiUrl.trim();
     return trimmed || DEFAULT_CODEX_API_BASE;
+}
+
+function isOfficialOpenAiApiUrl(apiUrl: string) {
+    return apiUrl.includes('api.openai.com');
 }
 
 async function resolveCodexAuthState() {
