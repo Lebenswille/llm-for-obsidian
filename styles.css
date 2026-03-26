@@ -232,75 +232,74 @@
 .chat-input-container {
     display: flex;
     flex-direction: column;
-    padding: 14px 16px 12px;
-    border-radius: 26px;
-    border: 1px solid color-mix(in srgb, rgba(var(--llm-accent-rgb), 0.28) 38%, var(--background-modifier-border) 62%);
+    padding: 13px 16px 12px;
+    border-radius: 24px;
+    border: 1px solid color-mix(in srgb, rgba(var(--llm-accent-rgb), 0.2) 34%, var(--background-modifier-border) 66%);
     background:
-        radial-gradient(circle at top center, rgba(var(--llm-accent-rgb), 0.1), transparent 54%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.24), transparent 28%),
+        radial-gradient(circle at top center, rgba(var(--llm-accent-rgb), 0.09), transparent 52%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 30%),
         var(--llm-surface);
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
     box-shadow:
-        0 20px 42px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        0 16px 36px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.26);
     overflow: hidden;
 }
 
 .chat-input-container:focus-within {
-    border-color: rgba(var(--llm-accent-rgb), 0.42);
+    border-color: rgba(var(--llm-accent-rgb), 0.32);
     box-shadow:
-        0 22px 46px rgba(var(--llm-accent-rgb), 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.34);
+        0 18px 40px rgba(var(--llm-accent-rgb), 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
     transform: translateY(-1px);
     background:
-        radial-gradient(circle at top center, rgba(var(--llm-accent-rgb), 0.14), transparent 56%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.26), transparent 28%),
+        radial-gradient(circle at top center, rgba(var(--llm-accent-rgb), 0.11), transparent 54%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 30%),
         var(--llm-surface);
 }
 
 .chat-input {
     width: 100%;
-    min-height: 72px;
+    min-height: 68px;
     max-height: 240px;
     overflow-y: auto;
     resize: none;
-    padding: 8px 2px 12px !important;
+    padding: 6px 2px 12px !important;
     border: none !important;
     background: transparent !important;
     font-family: inherit;
     font-size: 16px;
-    line-height: 1.65;
+    line-height: 1.58;
     color: var(--text-normal);
     box-shadow: none !important;
     letter-spacing: -0.01em;
 }
 
 .chat-input::placeholder {
-    color: color-mix(in srgb, var(--text-muted) 82%, white 18%);
-    font-weight: 500;
+    color: color-mix(in srgb, var(--text-muted) 72%, white 28%);
+    font-weight: 560;
 }
 
 .chat-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    margin: 2px -4px -2px;
-    padding: 14px 4px 0;
-    border-top: 1px solid color-mix(in srgb, var(--background-modifier-border) 66%, rgba(var(--llm-accent-rgb), 0.26) 34%);
+    gap: 14px;
+    margin: 0;
+    padding: 12px 2px 0;
+    border-top: 1px solid color-mix(in srgb, var(--background-modifier-border) 78%, rgba(var(--llm-accent-rgb), 0.22) 22%);
 }
 
 .chat-controls-left,
 .chat-controls-right {
     display: flex;
-    gap: 14px;
     align-items: center;
 }
 
 .chat-controls-left {
     flex: 1;
     min-width: 0;
-    gap: 10px;
+    gap: 14px;
 }
 
 .chat-controls-right {
@@ -309,89 +308,115 @@
 
 .llm-minimal-btn,
 .llm-minimal-dropdown {
-    height: 30px !important;
-    border-radius: 10px !important;
+    height: 36px !important;
+    border-radius: 12px !important;
     border: 1px solid transparent !important;
     box-shadow: none !important;
 }
 
 .llm-minimal-btn {
-    min-width: 42px;
-    padding: 0 10px !important;
-    background: linear-gradient(180deg, rgba(var(--llm-accent-rgb), 0.08), rgba(var(--llm-accent-rgb), 0.03)) !important;
-    color: color-mix(in srgb, var(--text-muted) 84%, var(--text-normal) 16%) !important;
-    font-size: 22px;
-    font-weight: 300;
-    line-height: 0;
-    height: 34px !important;
+    width: 34px;
+    min-width: 34px;
+    padding: 0 !important;
+    background: transparent !important;
+    color: color-mix(in srgb, var(--text-muted) 48%, var(--text-normal) 52%) !important;
+    font-size: 26px;
+    font-weight: 200;
+    line-height: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    vertical-align: middle;
+    flex-shrink: 0;
+    border: none !important;
+    border-radius: 10px !important;
     position: relative;
-    top: -3px;
-    border-radius: 17px !important;
-    border: 1px solid color-mix(in srgb, rgba(var(--llm-accent-rgb), 0.16) 50%, var(--background-modifier-border) 50%) !important;
 }
 
 .llm-minimal-btn:hover {
-    background: linear-gradient(180deg, rgba(var(--llm-accent-rgb), 0.14), rgba(var(--llm-accent-rgb), 0.06)) !important;
+    background: rgba(var(--llm-accent-rgb), 0.05) !important;
     color: var(--text-normal) !important;
     transform: translateY(-1px);
 }
 
+.llm-minimal-btn::before,
+.llm-minimal-btn::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.92;
+}
+
+.llm-minimal-btn::before {
+    width: 15px;
+    height: 1.8px;
+}
+
+.llm-minimal-btn::after {
+    width: 1.8px;
+    height: 15px;
+}
+
 .llm-minimal-dropdown {
     background: transparent !important;
-    color: color-mix(in srgb, var(--text-muted) 76%, var(--text-normal) 24%) !important;
+    color: color-mix(in srgb, var(--text-muted) 24%, var(--text-normal) 76%) !important;
     font-size: 15px;
-    font-weight: 600;
-    padding: 0 0 0 14px !important;
+    font-weight: 680;
+    padding: 0 14px 0 0 !important;
     cursor: pointer;
     appearance: none;
     width: 100%;
     max-width: none;
     border: none !important;
-    height: 28px !important;
-    line-height: 28px;
+    height: 38px !important;
+    line-height: 38px;
     display: block;
     margin: 0;
-    position: relative;
-    top: 0;
     letter-spacing: -0.01em;
+    text-overflow: ellipsis;
 }
 
 .llm-minimal-dropdown:hover {
     color: var(--text-normal) !important;
 }
 
+.llm-model-pill {
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    color: color-mix(in srgb, var(--text-muted) 30%, var(--text-normal) 70%);
+}
+
 .llm-model-select-wrap {
     min-width: 0;
-    flex: 0 0 auto;
+    flex: 0 1 auto;
     width: fit-content;
-    max-width: 280px;
+    max-width: 180px;
     display: flex;
     align-items: center;
-    height: 34px;
-    padding: 0 0 0 10px;
+    height: 36px;
     position: relative;
+    padding-right: 14px;
 }
 
 .llm-model-select-wrap::after {
     content: "";
     position: absolute;
-    left: 0;
+    right: 1px;
     top: 50%;
-    width: 7px;
-    height: 7px;
-    border-right: 1.5px solid color-mix(in srgb, var(--text-muted) 82%, var(--text-normal) 18%);
-    border-bottom: 1.5px solid color-mix(in srgb, var(--text-muted) 82%, var(--text-normal) 18%);
+    width: 8px;
+    height: 8px;
+    border-right: 1.6px solid color-mix(in srgb, var(--text-muted) 42%, var(--text-normal) 58%);
+    border-bottom: 1.6px solid color-mix(in srgb, var(--text-muted) 42%, var(--text-normal) 58%);
     transform: translateY(-65%) rotate(45deg);
     pointer-events: none;
 }
 
 .llm-rounded-send {
-    width: 40px;
-    height: 40px;
+    width: 46px;
+    height: 46px;
     border-radius: 50% !important;
     background: linear-gradient(135deg, rgba(var(--llm-accent-rgb), 1), rgba(var(--llm-accent-rgb), 0.75)) !important;
     color: #fff !important;
@@ -402,10 +427,10 @@
     cursor: pointer;
     border: none !important;
     box-shadow:
-        0 14px 28px rgba(var(--llm-accent-rgb), 0.34),
+        0 8px 18px rgba(var(--llm-accent-rgb), 0.2),
         inset 0 -2px 4px rgba(0, 0, 0, 0.12);
     margin-right: 2px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .llm-rounded-send:hover {
@@ -588,6 +613,11 @@
 
     .chat-controls {
         flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .chat-controls-left {
+        width: 100%;
     }
 
     .chat-controls-right {

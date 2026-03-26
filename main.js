@@ -612,7 +612,7 @@ var ChatView = class extends import_obsidian2.ItemView {
     const controlsDiv = inputContainer.createDiv({ cls: "chat-controls" });
     const leftControls = controlsDiv.createDiv({ cls: "chat-controls-left" });
     const rightControls = controlsDiv.createDiv({ cls: "chat-controls-right" });
-    const attachButton = leftControls.createEl("button", { text: "+", cls: "llm-minimal-btn", title: "Attach file" });
+    const attachButton = leftControls.createEl("button", { cls: "llm-minimal-btn", title: "Attach file", attr: { "aria-label": "Attach file" } });
     attachButton.addEventListener("click", () => {
       var _a;
       const activeFile = this.app.workspace.getActiveFile();
@@ -647,7 +647,8 @@ var ChatView = class extends import_obsidian2.ItemView {
         }).open();
       }
     });
-    const modelSelectWrap = leftControls.createDiv({ cls: "llm-model-select-wrap" });
+    const modelPill = leftControls.createDiv({ cls: "llm-model-pill" });
+    const modelSelectWrap = modelPill.createDiv({ cls: "llm-model-select-wrap" });
     const modelSelect = modelSelectWrap.createEl("select", { cls: "llm-minimal-dropdown", attr: { "aria-label": "Select model" } });
     const models = this.plugin.settings.models || [];
     for (const m of models) {
