@@ -1,3 +1,5 @@
+> 说明：这个插件是 vibe coded 的。
+
 中文 | [English](README.md)
 
 # LLM for Obsidian

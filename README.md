@@ -1,3 +1,5 @@
+> Note: This plugin is vibe coded.
+
 [中文](README.zh-CN.md) | English
 
 # LLM for Obsidian
