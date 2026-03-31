@@ -11,13 +11,13 @@ export default class LlmPlugin extends Plugin {
 
 		this.registerView(CHAT_VIEW_TYPE, (leaf) => new ChatView(leaf, this));
 
-		this.addRibbonIcon("bot", "Open LLM Assistant", () => {
+		this.addRibbonIcon("bot", "LLM for Obsidian", () => {
 			this.activateView();
 		});
 
 		this.addCommand({
 			id: "open-llm-chat-view",
-			name: "Open LLM Chat View",
+			name: "Open chat view",
 			callback: () => {
 				this.activateView();
 			},

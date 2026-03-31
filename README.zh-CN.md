@@ -223,8 +223,8 @@ codex login
 主要源码文件：
 
 - `src/main.ts`
-- `src/ChatView.ts`
-- `src/llmClient.ts`
+- `src/ui/chat-view.ts`
+- `src/api/llm.ts`
 - `styles.css`
 
 构建命令：

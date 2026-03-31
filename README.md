@@ -174,9 +174,10 @@ Ensure `codex login` was successful and `~/.codex/auth.json` exists.
 
 ## Development
 Main source files:
+
 - `src/main.ts`
-- `src/ChatView.ts`
-- `src/llmClient.ts`
+- `src/ui/chat-view.ts`
+- `src/api/llm.ts`
 - `styles.css`
 
 Build command:

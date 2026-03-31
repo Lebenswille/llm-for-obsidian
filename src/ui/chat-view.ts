@@ -41,7 +41,7 @@ export class ChatView extends ItemView {
   }
 
   getDisplayText() {
-    return "LLM Assistant";
+    return "LLM for Obsidian";
   }
 
   getIcon() {
@@ -57,7 +57,7 @@ export class ChatView extends ItemView {
     // Header
     const headerContainer = container.createDiv({ cls: "llm-header" });
     headerContainer.createEl("h3", {
-      text: "LLM Assistant",
+      text: "LLM for Obsidian",
       cls: "llm-header-title",
     });
 

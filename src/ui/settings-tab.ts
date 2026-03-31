@@ -96,7 +96,7 @@ export class LlmSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    ;
+    containerEl.createEl("h2", { text: "LLM for Obsidian Settings" });
 
     new Setting(containerEl)
       .setName("System Prompt")
