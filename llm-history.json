@@ -1,0 +1,230 @@
+{
+  "References/@yoshida2026.md": [
+    {
+      "timestamp": 1774346707989,
+      "messages": [
+        {
+          "role": "user",
+          "content": "你是谁"
+        },
+        {
+          "role": "assistant",
+          "content": "我是集成在 Obsidian 侧边栏中的 AI 助手。\n\n我的主要任务是结合你当前在 Obsidian 中打开的文档内容来回答问题。目前，我正处于你提供的关于 **Yoshida 等人（2026年）发表在《Cell》上的论文《Whole-organ and whole-body 3D atlases enable cellome-wide profiling》** 的上下文中。\n\n我可以帮你：\n1. **总结文档内容**：例如提取该研究的核心发现或技术创新。\n2. **解释专业细节**：比如解释 **exMOVIE 显微镜系统** 的工作原理或 **CUBIC 图谱** 的构建流程。\n3. **分析图表**：正如我们刚才讨论的，我可以基于文本描述为你解读图 1 等实验数据的含义。\n4. **提取特定信息**：从论文中查找作者、日期、DOI 或特定的实验参数。\n\n如果你有关于这篇论文或相关研究的任何问题，请随时提问！"
+        },
+        {
+          "role": "user",
+          "content": "解释图1"
+        },
+        {
+          "role": "assistant",
+          "content": "根据您提供的论文内容，**图1 (Figure 1)** 是整篇研究的技术基石，主要展示了该团队开发的**组织透明化技术（CUBIC）**和**新型 3D 成像系统（exMOVIE）**。\n\n以下是对图1各部分的详细解读：\n\n### 1. 组织透明化流程 (Panels A - D)\n这部分展示了如何将不透明的生物样本变成像玻璃一样透明，以便光线穿透进行深层成像。\n*   **Panel A & C (时间线)**：展示了成年小鼠器官（约20-30天）和新生小鼠全身（约39天）的透明化及染色流程。核心步骤包括：固定 (Fix) -> 脱脂 (Delipidation) -> 染色 (Staining) -> 折射率匹配 (RI match)。\n*   **Panel B & D (视觉效果)**：\n    *   展示了包括甲状腺、唾液腺、心、肺、肝、胰腺、肾、膀胱、附睾、睾丸和子宫在内的**11种器官**在不同阶段的外观变化。\n    *   在“RI match”这一步，器官在溶液中几乎变得完全透明。\n    *   **Panel D** 特别展示了新生小鼠（P0代）全身透明化的过程，包括脱钙和脱色处理，最终实现全身透明。\n\n### 2. exMOVIE 成像系统 (Panels E - G)\n为了对这些大型透明样本进行单细胞分辨率的成像，研究者开发了 **exMOVIE**（扩展型移动实时自动聚焦光片荧光显微镜）。\n*   **Panel E (性能对比)**：这是一个关键的对比图。它显示了 exMOVIE 系统突破了传统显微镜（如共聚焦、双光子、普通光片显微镜 SPIM）在**工作距离（Working distance）**与**分辨率（Resolution）**之间的矛盾。exMOVIE 能够在保持高分辨率的同时，拥有长达 **30mm** 的工作距离，足以穿透整个小鼠器官。\n*   **Panel F & G (硬件原理)**：\n    *   展示了光路原理图和 CAD 机械模型。\n    *   系统集成了**实时自动聚焦**功能，解决了大样本成像过程中由于折射率微小差异导致的失焦问题。\n    *   使用了 10x 高倍率物镜，确保了单细胞级别的捕获能力。\n\n### 3. 成像精度与分辨率 (Panel H)\n*   **Panel H (分辨率验证)**：通过强度曲线展示了系统的空间分辨率。\n    *   **横向 (X-Y) 分辨率**：约为 **1 $\\mu$m**。\n    *   **轴向 (Axial) 分辨率**：约为 **5 $\\mu$m**。\n    *   这种精度确保了算法可以精准地识别出每一个细胞核（即图中的每一个点坐标）。\n\n### 总结\n**图1 的核心意义在于证明：** 研究团队不仅能够让小鼠的全身和所有主要器官变透明，还制造出了一台足够强大的“超级相机”（exMOVIE），能够以极高的速度和精度拍下数以亿计细胞的 3D 照片。这为后续构建“全细胞组学图谱”提供了数据来源。"
+        }
+      ],
+      "attached": [
+        "Library/PDFs/yoshida2026.pdf"
+      ]
+    },
+    {
+      "timestamp": 1774346730189,
+      "messages": [
+        {
+          "role": "user",
+          "content": "你能做什么"
+        },
+        {
+          "role": "assistant",
+          "content": "作为集成在 Obsidian 中的助手，我可以直接访问你当前打开的文档内容（即 **Yoshida 等人 2026 年发表在《Cell》上的关于 CUBIC 3D 图谱的研究**）。\n\n针对这篇特定的论文或你正在处理的研究笔记，我可以为你完成以下任务：\n\n### 1. 内容总结与提取\n*   **核心要点总结：** 快速提取论文的研究背景、核心技术（如 exMOVIE 显微镜）、主要发现和科学意义。\n*   **术语解释：** 解释文中的专业术语，例如什么是 **\"Cellome\"（细胞组）**、**\"exMOVIE\"** 系统的工作原理，或 **\"CUBIC\"** 透明化技术的细节。\n*   **数据查询：** 寻找特定的实验参数（例如：exMOVIE 的分辨率是多少？研究涵盖了哪 11 个器官？）。\n\n### 2. 图表与方法论深度解析\n*   **图表解读：** 像之前解释图 1 一样，我可以根据文中描述为你详细拆解各个 Figure 的含义。\n*   **实验流程梳理：** 帮你理清从样本制备（CUBIC-L/R+）、成像（exMOVIE）到数据分析（细胞检测与注册）的完整工作流。\n*   **技术对比：** 分析 exMOVIE 相比传统光片显微镜（LSFM）解决了哪些痛点（如工作距离与分辨率的权衡）。\n\n### 3. 应用场景分析\n*   **研究价值探讨：** 总结该图谱在**发育生物学**（如肾脏发育）、**病理学**（如药物诱导的损伤）和**免疫学**（如全身巨噬细胞分布）中的具体应用案例。\n*   **未来方向：** 根据论文讨论部分，分析该研究对未来“空间组学”或“单细胞生物学”的影响。\n\n### 4. 辅助写作与翻译\n*   **学术翻译：** 将复杂的英文段落翻译成准确的中文学术语言。\n*   **润色建议：** 如果你在写关于这篇论文的读书笔记或综述，我可以帮你优化语言表达。\n*   **问答互动：** 你可以针对文中的任何细节向我提问，例如：“作者是如何验证细胞检测准确性的？”\n\n---\n\n**你可以试着问我：**\n*   “exMOVIE 显微镜是如何克服工作距离和分辨率之间的矛盾的？”\n*   “这篇研究中提到的‘Cellomics’工作流包含哪些步骤？”\n*   “论文中关于顺铂（Cisplatin）诱导肾损伤的实验结果是什么？”\n\n**请问你想从哪个方面开始深入了解？**"
+        },
+        {
+          "role": "user",
+          "content": "List the key points."
+        },
+        {
+          "role": "assistant",
+          "content": "**Error:** Request failed, status 429"
+        },
+        {
+          "role": "user",
+          "content": "Summarize the document in 3-5 bullet points."
+        },
+        {
+          "role": "assistant",
+          "content": "Based on the content of the document you have open, here is a summary of the key points from the research paper by Yoshida et al. (2026) on the CUBIC 3D atlas:\n\n*   **Core Achievement:** The study presents the first **whole-body, single-cell-resolution 3D atlas** of an adult mouse, termed the **\"Cellome\"**. This atlas maps the precise 3D coordinates, morphology, and gene expression of approximately **120 million cells** across 11 major organs.\n*   **Enabling Technology:** The breakthrough was made possible by a novel imaging system called **exMOVIE**, which overcomes the traditional trade-off between resolution and working distance in light-sheet microscopy. It achieves **high-resolution (1.1 µm), high-speed imaging of large, cleared samples**.\n*   **Integrated Workflow:** The research establishes a complete \"**Cellomics**\" pipeline, integrating advanced tissue clearing (**CUBIC-L/R+**), large-scale imaging (**exMOVIE**), automated AI-based **cell detection & segmentation**, and computational **3D cell registration** to align cells across multiple datasets.\n*   **Scientific Applications:** The atlas provides unprecedented insights into **organ architecture, cellular neighborhoods, and systemic biology**. Demonstrated applications include tracing **kidney development**, mapping the **body-wide distribution of immune cells (e.g., macrophages)**, and modeling **drug-induced organ injury** (e.g., cisplatin nephrotoxicity).\n*   **Future Impact:** This work establishes a foundational resource for **\"spatialomics,\"** enabling new quantitative analyses of cellular organization and inter-organ communication. It sets the stage for a new era of whole-organism, cell-level systems biology."
+        },
+        {
+          "role": "user",
+          "content": "List the key points."
+        },
+        {
+          "role": "assistant",
+          "content": "**Error:** Request failed, status 429"
+        },
+        {
+          "role": "user",
+          "content": "Summarize the document in 3-5 bullet points."
+        },
+        {
+          "role": "assistant",
+          "content": "Based on the provided document, here is a summary of the research in 4 bullet points:\n\n*   **Creation of the \"Cellome\" Atlas:** The researchers developed the **CUBIC Organ/Body Atlas**, providing the first three-dimensional, single-cell-resolution maps of 11 adult mouse organs and a whole neonatal body. This \"cellome-wide\" resource contains precise coordinates for hundreds of millions of cells.\n*   **Advanced Imaging with exMOVIE:** To capture these massive datasets, the team developed **exMOVIE**, a specialized light-sheet fluorescence microscopy system. It overcomes the traditional trade-off between high resolution and long working distance, allowing rapid 3D imaging of large, cleared samples (up to 30mm thick).\n*   **Integrated \"Cellomics\" Workflow:** The study establishes a standardized pipeline that combines optimized tissue clearing (CUBIC-L/R+), high-speed imaging, AI-based automated cell detection, and 3D registration to align and compare different biological samples at the single-cell level.\n*   **Broad Scientific Applications:** The authors demonstrated the atlas's utility by quantifying cellular changes during **kidney development**, mapping cell loss in **drug-induced organ injury** (cisplatin), and profiling the **body-wide distribution of immune cells** (macrophages) and vascular structures."
+        }
+      ],
+      "attached": [
+        "Library/PDFs/yoshida2026.pdf"
+      ]
+    }
+  ],
+  "Library/PDFs/yoshida2026.pdf": [
+    {
+      "timestamp": 1774348539646,
+      "messages": [],
+      "attached": [
+        "Library/PDFs/yoshida2026.pdf"
+      ]
+    }
+  ],
+  "References/@soldatov2019.md": [],
+  "References/@singla2026.md": [],
+  "Inbox/Inbox.base": [
+    {
+      "timestamp": 1774380686454,
+      "messages": [
+        {
+          "role": "user",
+          "content": "你能干什么"
+        },
+        {
+          "role": "assistant",
+          "content": "我可以在你的 Obsidian 侧边栏里帮你做这些事：\n\n- 解释当前笔记内容\n- 总结段落、页面或选中文本\n- 润色、改写、扩写、压缩文字\n- 提取重点、待办、术语、问题清单\n- 根据上下文回答问题\n- 帮你整理结构，比如：\n  - 生成标题层级\n  - 做会议纪要\n  - 输出 Markdown 列表/表格\n  - 生成大纲\n- 辅助写作：\n  - 续写\n  - 换风格\n  - 写摘要\n  - 起标题\n  - 拟定模板\n- 学习辅助：\n  - 解释概念\n  - 做问答卡片\n  - 生成复习提纲\n\n如果你在 Obsidian 里选中了某段文字，我也可以只针对那段处理。\n\n你可以直接这样对我说：\n- “总结这段内容”\n- “把这段改得更正式”\n- “提取 5 个重点”\n- “根据这篇笔记生成一个大纲”\n- “把这段转成 Markdown 表格”\n- “解释一下这里的概念”\n- “帮我续写后面一段”\n\n如果你愿意，我也可以先根据你当前打开的笔记，直接帮你做一个“内容摘要 + 结构梳理”。"
+        },
+        {
+          "role": "user",
+          "content": "Summarize the document in 3-5 bullet points."
+        },
+        {
+          "role": "assistant",
+          "content": "I can do that, but I don’t currently have the document content in this chat.\n\nPlease do one of these:\n- paste the document text here, or\n- select the text in Obsidian and ask again, or\n- share the note content/context if your integration supports it\n\nThen I’ll summarize it in 3–5 bullet points."
+        }
+      ],
+      "attached": []
+    }
+  ],
+  "Notes/assets/XG_pricelist_final_SEK_wQR_260107.pdf": [
+    {
+      "timestamp": 1774381241589,
+      "messages": [
+        {
+          "role": "user",
+          "content": "总结这个文件"
+        },
+        {
+          "role": "assistant",
+          "content": "这是一个 **Xpress Genomics 自 2026 年 1 月起生效的服务价格表**，主要列出了不同测序与组学服务的**价格、包含内容、折扣规则和备注**。简要总结如下：\n\n## 1. 总体说明\n- 价格和交付时间都是**估算值**，会根据项目规格、样本类型和处理要求变化。\n- 可提供：\n  - **按量定价**\n  - **定制化工作流程**\n- 所有价格可能因错误、市场波动或供应问题而调整。\n- 所有服务受 **Xpress Genomics 条款和条件**约束。\n- 联系方式：\n  - 网站：**www.xpress-genomics.com**\n  - 邮箱：**hi@xpress-genomics.com**\n\n## 2. 折扣与基础规则\n- **板数折扣（Scale discount）**：\n  - 每增加 1 个 plate，额外 **1% 折扣**\n  - **最高 23% 折扣**\n  - 适用于 **24 个 plate 或以上**\n- 一些“service sequencing”项目包括：\n  - **library conversion**\n  - **sequencing**\n  - **demultiplexing**\n\n## 3. 主要服务与价格\n\n### A. Bulk RNA sequencing\n**Xpress-seq mRNA / Total RNA-seq**\n- <24 个样本：**2,200 SEK/样本**\n- 24–72 个样本：**1,800 SEK/样本**\n- >72 个样本：**1,200 SEK/样本**\n- 默认规格：**25M reads/sample, PE100**\n- 升级项：\n  - 升级到 **50M reads/sample**：**+200 SEK/样本**\n  - **RNA extraction**：**+100 SEK/样本**\n  - **FFPE RNA/DNA extraction**：**+400 SEK/样本**\n  - 升级到 **PE150**：文中有对应升级项，但排版较乱，需正式报价确认\n\n### B. ATAC-seq\n- **50M reads PE150 / 100M reads PE150**\n- 价格：**2,900 SEK / 3,800 SEK 每样本**\n- 包含：\n  - library processing\n  - sequencing\n  - data preprocessing\n- **DNA extraction**：**+100 SEK/样本**\n\n### C. Whole Genome Sequencing（30x）\n- <48 个样本：**5,400 SEK/样本**\n- >48 个样本：**4,200 SEK/样本**\n- 包含：\n  - library processing\n  - sequencing\n  - data preprocessing\n\n### D. Olink NGS based proteomics\n**Olink Reveal（服务）**\n- **86 个样本/批次**\n- 价格：**159,000 SEK**\n- 包含：\n  - library processing\n  - sequencing\n  - data preprocessing\n\n### E. Spatial transcriptomics\n**Stereo-Seq FF v1.3**\n- **0.5 × 0.5 cm chip**：**20,000 SEK**\n- **1 × 1 cm chip**：**42,500 SEK**\n- 包含：\n  - 芯片\n  - 客户用于生成和扩增 cDNA 的试剂\n  - XG 负责 library prep、sequencing、data processing\n- 最低订购量：\n  - **0.5 × 0.5 cm**：至少 **4 个 chips**\n  - **1 × 1 cm**：至少 **2 个 chips**\n\n### F. Plate-based full-length single-cell RNA sequencing\n**Xpress-seq Full-length scRNA-seq（300k reads/cell, PE100）**\n- **11,000 SEK/plate**\n- 升级项：\n  - 升级到 **PE150**：**+1,000 SEK/plate**\n  - 升级到 **1 million reads/cell**：**+3,000 SEK/plate**\n  - **额外 lysis plate**：**500 SEK/plate**\n\n### G. Combinatorial indexing single-cell RNA sequencing\n**Parse Bioscience EverCode v3**\n- **10,000 cells & 100k reads/cell**：**200,000 SEK**\n- **100,000 cells & 75k reads/cell**：**360,000 SEK**\n- **1,000,000 cells & 50k reads/cell**：**900,000 SEK**\n- 包含：\n  - fixation kits\n  - single-cell library processing\n  - sequencing\n  - data preprocessing\n- 备注：更定制化项目需联系报价\n\n### H. Pixelgen protein interactomics\n**Pixelgen Proxiome Kit（Sequencing only）**\n- 按 flow-cell 计价：\n  - 1 个：**42,500 SEK**\n  - 2–4 个：**40,000 SEK**\n  - 5 个以上：**35,000 SEK**\n- 包含：\n  - library conversion\n  - sequencing\n  - demultiplexing\n\n**Pixelgen Proxiome Kit（Service）**\n- 8 samples（1 kit）：**275,000 SEK**\n- 16 samples（2 kits）：**500,000 SEK**\n- 包含：\n  - library processing\n  - sequencing\n  - data preprocessing\n\n### I. Service sequencing（按 flow-cell）\n1. **G99RS Flow-cell**\n   - Read length：**SE100 / PE150 / PE300**\n   - 输出：**80–100M reads**\n\n2. **G400RS Flow-cell**\n   - Read length：**SE100 / PE100 / PE150**\n   - 输出：**1.4–1.8B reads**\n   - 价格：**6,600 / 8,500 / 12,500 SEK**\n\n3. **T7RS Flow-cell**\n   - Read length：**PE100 / PE150**\n   - 输出：**5.0–6.0B reads**\n   - 价格：**15,100 / 19,400 / 24,700 SEK**\n\n### J. Stereo-seq STOmics library sequencing\n- 价格：**30,100 SEK**\n- 另有：\n  - **45,400 SEK / 56,700 SEK**\n- 由于原文排版较乱，这几项对应具体配置建议向官方确认\n\n## 4. 核心特点\n这份文件本质上是一个**多组学测序服务目录**，覆盖：\n- Bulk RNA-seq\n- 单细胞 RNA-seq\n- ATAC-seq\n- 全基因组测序\n- 空间转录组\n- 蛋白组/蛋白互作组\n- 上机测序服务（按 flow-cell）\n\n并且多数项目都包含：\n- **建库/文库处理**\n- **测序**\n- **基础数据预处理**\n\n---\n\n如果你愿意，我还可以把这份内容进一步整理成：\n1. **表格版摘要**\n2. **按服务类型分类的清单**\n3. **适合汇报/邮件转发的中文精简版**"
+        }
+      ],
+      "attached": [
+        "Notes/assets/XG_pricelist_final_SEK_wQR_260107.pdf"
+      ]
+    }
+  ],
+  "Career/CV/简历-庞力斌.pdf": [
+    {
+      "timestamp": 1774434880384,
+      "messages": [
+        {
+          "role": "user",
+          "content": "总结这个文件"
+        },
+        {
+          "role": "assistant",
+          "content": "这份文件是一份**庞力斌博士的学术简历/科研履历**，主要内容可概括如下：\n\n### 1. 个人基本信息\n- **姓名**：庞力斌，PhD  \n- **年龄**：29岁（1997年生）\n- **性别**：男\n- **籍贯**：贵州\n- **联系方式**：手机 15316622979；邮箱 libinpang@outlook.com\n- **学术主页**：ORCID 链接已提供\n\n### 2. 教育背景\n- **同济大学 材料科学与工程**\n  - **博士（直博）**：2016.9–2021.9\n  - 研究方向：**生物材料**\n  - 博士论文：围绕**硼硅酸盐生物活性玻璃的改性、功能化、性能评价与应用**\n  - 导师：**王德平教授**\n- **同济大学 学士**：2012.9–2016.7\n  - 方向：**无机非金属材料（生物活性玻璃）**\n\n### 3. 科研经历\n- **哥德堡大学（瑞典）博士后**：2024.8–2026.8  \n  - 课题：**骨骼干细胞生态位、组织透明与三维成像**\n  - 合作导师：**Prof. Andrei Chagin**\n- **上海交通大学医学院附属瑞金医院 博士后**：2021.11–2024.7  \n  - 课题：**用于组织再生的水凝胶微球/短纤维生物材料**\n  - 合作导师：**崔文国教授**\n\n### 4. 研究方向与特长\n核心研究集中在**生物医用材料与组织再生**，具体包括：\n- 生物玻璃与陶瓷\n- 水凝胶微球与纤维\n- 骨缺损、皮肤创面、骨肿瘤、骨关节炎等修复材料开发\n- 骨发育\n- 组织透明与三维成像\n- 空间转录组测序\n\n### 5. 科研项目与荣誉\n获得多项博士后及青年人才资助：\n- **上海市超级博士后**\n- **中国博士后科学基金**\n- **上海交通大学医学院博士后激励计划**\n- **瑞金医院青年培育基金**\n\n### 6. 论文成果\n- 提供了 **Google Scholar** 链接\n- 论文数量较多，包含：\n  - **8篇一作/共一作论文**\n  - **多篇合作论文**\n- 发表期刊质量较高，涵盖：\n  - **Chemical Engineering Journal**\n  - **Acta Biomaterialia**\n  - **Advanced Functional Materials**\n  - **Bioactive Materials**\n  - **ACS Applied Materials & Interfaces**\n  - **Advanced Materials**\n  - **Advanced Science** 等\n- 研究主题主要聚焦：\n  - **骨修复与骨肿瘤治疗**\n  - **骨关节炎治疗**\n  - **糖尿病创面愈合**\n  - **生物活性玻璃、纳米颗粒、水凝胶、短纤维支架等材料开发**\n\n其中较突出的代表性成果包括：\n- **骨修复与抗肿瘤双功能硼硅酸盐纳米材料**\n- **用于骨关节炎治疗的原位产氢注射短纤维**\n- **促进糖尿病创面愈合的光交联水凝胶**\n- **用于骨再生的PVA-硼硅酸盐复合支架**\n\n### 7. 推荐人\n文件列出了3位推荐人：\n- **Andrei Chagin教授**（哥德堡大学）\n- **崔文国教授**（上海交通大学）\n- **王德平教授**（同济大学）\n\n---\n\n### 一句话总结\n这是一份以**生物医用材料、组织修复与再生**为核心方向的青年学者简历，显示庞力斌博士具有**扎实的材料学背景、连续的高水平科研产出、国际博士后经历，以及在骨修复、创面愈合、骨关节炎和骨肿瘤治疗材料方面的突出研究能力**。\n\n如果你愿意，我也可以进一步把这份文件整理成：\n1. **更正式的中文简历摘要**\n2. **适合申请基金/职位的个人简介**\n3. **面试或自我介绍用的精简版**"
+        }
+      ],
+      "attached": [
+        "Career/CV/简历-庞力斌.pdf"
+      ]
+    }
+  ],
+  "Library/PDFs/zhu2025.pdf": [
+    {
+      "timestamp": 1774471158457,
+      "messages": [],
+      "attached": [
+        "Library/PDFs/zhu2025.pdf"
+      ]
+    }
+  ],
+  "References/@abbuehl2017.md": [
+    {
+      "timestamp": 1774633499815,
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello"
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! I can help with this paper.\n\nYou currently have notes open for **Abbuehl et al., 2017, Cell Stem Cell** on how **primary bone marrow stromal cells repair irradiation-damaged niches and improve HSC transplantation**.\n\nIf you want, I can help you with any of these:\n\n- **Summarize the paper in English or Chinese**\n- **Extract the key findings**\n- **Explain the biology** of BMSCs, HSC niches, or irradiation damage\n- **Turn this into Obsidian notes**, e.g.:\n  - concise literature note\n  - bullet-point highlights\n  - discussion/questions\n  - Markdown table\n- **Critically evaluate** the study’s strengths and limitations\n- **Compare it** with other bone marrow niche papers\n\nFor example, I can already give you a one-line takeaway:\n\n> **This study shows that pre-transplant irradiation severely and durably damages the bone marrow stromal niche, and that only a rare subset of freshly isolated primary BMSCs—not cultured BMSCs—can engraft long term, rebuild the niche, and improve donor HSC maintenance and hematopoietic recovery.**\n\nJust tell me what you want next."
+        },
+        {
+          "role": "user",
+          "content": "Regarding: \"This study shows that pre-transplant irradiation severely and durably damages th...\"\n\n翻译为中文"
+        },
+        {
+          "role": "assistant",
+          "content": "可以翻译为：\n\n**本研究表明，移植前的照射预处理会对骨髓微环境造成严重且持久的损伤；而只有一类罕见的新鲜分离原代骨髓基质细胞（BMSCs），而非体外培养的BMSCs，才能实现长期植入、重建受损生态位，并改善供体造血干细胞（HSC）的维持及造血恢复。**\n\n如果你想要更正式一点、适合写在笔记里的版本，也可以写成：\n\n**该研究显示，移植前全身照射会对骨髓基质龛位造成严重而长期的破坏。只有罕见的新鲜分离原代骨髓基质细胞，而非经体外培养的BMSCs，能够长期植入受体骨髓、修复受损微环境，并增强供体造血干细胞的维持与移植后造血重建。**\n\n如果你愿意，我也可以顺手把你这篇论文的 **one-line takeaway 全部润色成中文文献笔记风格**。"
+        },
+        {
+          "role": "user",
+          "content": "相关文献"
+        },
+        {
+          "role": "assistant",
+          "content": "基于您提供的 **Abbuehl et al. (2017)** 的研究背景（关注放射损伤、原代BMSC亚群、生态位修复及HSC支持），我为您整理了一份**相关文献推荐清单**。\n\n这些文献涵盖了骨髓微环境（Niche）的经典理论、不同间充质亚群的鉴定、以及近年来利用单细胞技术对该领域的进一步探索。\n\n### 1. 骨髓微环境与HSC生态位 (经典综述与理论)\n如果你想深入了解为什么 Abbuehl 研究中的“生态位修复”如此重要，可以参考以下文献：\n\n*   **Morrison, S. J., & Scadden, D. T. (2014). The bone marrow niche for haematopoietic stem cells. *Nature*.**\n    *   **关联点**：这是该领域的权威综述，定义了内皮细胞、间充质细胞等如何共同构成HSC的家。它解释了为什么HSC需要特定的微环境才能生存。\n*   **Pinho, S., & Frenette, P. S. (2019). Haematopoietic stem cell development and deposition. *Nature Reviews Molecular Cell Biology*.**\n    *   **关联点**：详细讨论了不同间充质亚群（如LepR+细胞）的空间分布，是理解 Abbuehl 文中“空间定位分析”的进阶读物。\n\n### 2. 间充质亚群的鉴定 (关键标记物研究)\nAbbuehl 鉴定了 `CD73+ CD105- SCA1+` 这一罕见亚群，以下论文讨论了其他类似的“明星”亚群：\n\n*   **Méndez-Ferrer, S., et al. (2010). Mesenchymal and haematopoietic stem cells form a unique bone marrow niche. *Nature*.**\n    *   **关联点**：首次鉴定了 **Nestin+** 间充质干细胞在HSC维持中的核心作用。Nestin+ 与 Abbuehl 提到的 Sca1+ 亚群在功能上有很大重叠。\n*   **Zhou, B. O., et al. (2014). Leptin-receptor-expressing mesenchymal stromal cells represent the main source of bone marrow MSCs. *Cell Stem Cell*.**\n    *   **关联点**：证明了 **LepR+** 细胞是成年骨髓中BMSCs的主要来源。Abbuehl 的研究可以看作是对这些亚群在损伤修复场景下的进一步细化。\n\n### 3. 放射损伤对微环境的影响 (机制深挖)\nAbbuehl 提出 TBI 造成永久损伤，以下文献对此进行了补充：\n\n*   **Ho, Y. H., et al. (2019). Remodeling of bone marrow hematopoietic stem cell niches promotes myeloid regeneration. *Nature*.**\n    *   **关联点**：研究了化疗/放疗后，微环境如何为了应急造血而发生“重塑”。它探讨了神经纤维和血管在损伤后的变化，与 Abbuehl 的基质修复观点相辅相成。\n*   **Hoggatt, J., et al. (2016). Rapid mobilization reveals a highly engraftable hematopoietic stem cell. *Science Translational Medicine*.**\n    *   **关联点**：讨论了如何通过优化移植策略减轻预处理带来的损伤，侧重于临床转化。\n\n### 4. 单细胞水平的微环境图谱 (最新进展)\nAbbuehl (2017) 使用了早期的单细胞克隆分析，而 2019 年后的研究通过 scRNA-seq 彻底改变了我们对 BMSC 多样性的认识：\n\n*   **Tikhonova, A. N., et al. (2019). The bone marrow microenvironment at single-cell resolution. *Nature*.**\n    *   **关联点**：利用单细胞测序定义了小鼠骨髓中所有的基质细胞群，验证了 Abbuehl 提到的基质细胞异质性。\n*   **Baryawno, N., et al. (2019). A Compositional View of the Bone Marrow Microenvironment Through Single-Cell RNA Sequencing. *Cell*.**\n    *   **关联点**：提供了极其详尽的骨髓基质细胞图谱，并讨论了在应激状态下（如癌症或损伤）这些细胞的变化。\n\n### 5. 关于“体外培养导致功能丧失” (临床转化困境)\nAbbuehl 的核心发现是“体外培养两周即失效”，这与以下研究呼应：\n\n*   **Bianco, P., et al. (2013). The meaning, the sense and the significance of MSCs. *Nature Medicine*.**\n    *   **关联点**：著名学者 Paolo Bianco 对“间充质干细胞（MSC）”概念的批判性反思，强调了原代细胞与培养细胞在生物学特性上的巨大鸿沟。\n\n---\n\n**建议笔记记录方式：**\n如果你在 Obsidian 中整理，可以将这些文献链接到 `abbuehl2017` 的双链中，例如：\n- `[[mendez-ferrer2010]]`：定义了 Nestin+ 亚群，与本文的 Sca1+ 亚群可做对比分析。\n- `[[tikhonova2019]]`：用单细胞测序进一步证实了本文提到的 BMSC 异质性。\n\n需要我针对其中某篇文献为您做更详细的对比分析吗？"
+        }
+      ],
+      "attached": []
+    }
+  ],
+  "Notes/assets/STUM-TT001 Stereo-seq Transcriptomics Set V1.3 for Chip-on-a-slide User Manual.pdf": [
+    {
+      "timestamp": 1774954700814,
+      "messages": [],
+      "attached": [
+        "Notes/assets/STUM-TT001 Stereo-seq Transcriptomics Set V1.3 for Chip-on-a-slide User Manual.pdf"
+      ]
+    }
+  ],
+  "Notes/assets/STUM-PR002 Stereo-seq Permeabilization Set V1.1 for Chip-on-a-slide User Manual.pdf": [
+    {
+      "timestamp": 1774957121370,
+      "messages": [],
+      "attached": [
+        "Notes/assets/STUM-PR002 Stereo-seq Permeabilization Set V1.1 for Chip-on-a-slide User Manual.pdf"
+      ]
+    }
+  ],
+  "Inbox/XG_pricelist_final_SEK_wQR_260107.md": [
+    {
+      "timestamp": 1774964370545,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Summarize the document in 3-5 bullet points."
+        },
+        {
+          "role": "assistant",
+          "content": "**Error:** Request failed, status 503"
+        },
+        {
+          "role": "user",
+          "content": "Summarize the document in 3-5 bullet points."
+        },
+        {
+          "role": "assistant",
+          "content": "Based on the provided document, here is a summary in 3-5 bullet points:\n\n*   This is a **service price list** for Xpress Genomics, effective from January 2026, covering a wide range of sequencing and omics services.\n*   It details **pricing, included services, and discount rules** (e.g., scale discounts up to 23% for bulk orders) for services like Bulk RNA-seq, ATAC-seq, Whole Genome Sequencing, and Spatial Transcriptomics.\n*   The document specifies that all listed prices are **estimates** and can be adjusted; services are subject to the company's terms and conditions.\n*   Most service packages include **library processing, sequencing, and basic data preprocessing**.\n*   It also lists **service sequencing options** priced per flow-cell type (G99RS, G400RS, T7RS) with different read lengths and outputs."
+        }
+      ],
+      "attached": []
+    }
+  ]
+}

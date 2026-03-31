@@ -1,253 +1,90 @@
-> Note: This plugin is vibe coded.
+# Obsidian Sample Plugin
 
-[中文](README.zh-CN.md) | English
+This is a sample plugin for Obsidian (https://obsidian.md).
 
-# LLM for Obsidian
+This project uses TypeScript to provide type checking and documentation.
+The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
 
-An Obsidian sidebar assistant for chatting with LLMs using your current note, attached files, and PDFs.
+This sample plugin demonstrates some of the basic functionality the plugin API can do.
+- Adds a ribbon icon, which shows a Notice when clicked.
+- Adds a command "Open modal (simple)" which opens a Modal.
+- Adds a plugin setting tab to the settings page.
+- Registers a global click event and output 'click' to the console.
+- Registers a global interval which logs 'setInterval' to the console.
 
-## Overview
+## First time developing plugins?
 
-`LLM for Obsidian` brings LLM workflows directly into your vault instead of forcing you to leave Obsidian for a separate chat app.
+Quick starting guide for new plugin devs:
 
-It is designed for note-centric work:
+- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
+- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
+- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
+- Install NodeJS, then run `npm i` in the command line under your repo folder.
+- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
+- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
+- Reload Obsidian to load the new version of your plugin.
+- Enable plugin in settings window.
+- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
 
-- Ask questions about the current note or PDF
-- Attach Markdown, text, and PDF files as context
-- Switch between multiple model providers
-- Save replies back into notes
-- Reuse quick prompts
-- Keep per-file conversation history
-- Support both API Key auth and Codex Auth
+## Releasing new releases
 
-## Features
+- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
+- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
+- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
+- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
+- Publish the release.
 
-- Sidebar chat panel in Obsidian
-- Context-aware chatting with current note and attachments
-- Markdown / TXT / PDF support
-- Native PDF input for OpenAI, Anthropic, and Gemini
-- Quick prompt buttons with settings-page management
-- Multi-model configuration and switching
-- Provider presets for mainstream models
-- Codex support via local `codex login`
-- Conversation history grouped by active file
-- Save assistant output back into notes
-- Auto-create inbox notes for standalone PDFs
+> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
+> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
 
-## Installation
+## Adding your plugin to the community plugin list
 
-Place the plugin under:
+- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
+- Publish an initial version.
+- Make sure you have a `README.md` file in the root of your repo.
+- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
 
-```text
-.obsidian/plugins/llm-for-obsidian
+## How to use
+
+- Clone this repo.
+- Make sure your NodeJS is at least v16 (`node --version`).
+- `npm i` or `yarn` to install dependencies.
+- `npm run dev` to start compilation in watch mode.
+
+## Manually installing the plugin
+
+- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+
+## Improve code quality with eslint
+- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
+- This project already has eslint preconfigured, you can invoke a check by running`npm run lint`
+- Together with a custom eslint [plugin](https://github.com/obsidianmd/eslint-plugin) for Obsidan specific code guidelines.
+- A GitHub action is preconfigured to automatically lint every commit on all branches.
+
+## Funding URL
+
+You can include funding URLs where people who use your plugin can financially support it.
+
+The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+
+```json
+{
+    "fundingUrl": "https://buymeacoffee.com"
+}
 ```
 
-Required runtime files:
+If you have multiple URLs, you can also do:
 
-- `manifest.json`
-- `main.js`
-- `styles.css`
-
-For local development:
-
-```bash
-npm install
-npm run build
+```json
+{
+    "fundingUrl": {
+        "Buy Me a Coffee": "https://buymeacoffee.com",
+        "GitHub Sponsor": "https://github.com/sponsors",
+        "Patreon": "https://www.patreon.com/"
+    }
+}
 ```
 
-## Getting Started
+## API Documentation
 
-1. Enable the plugin in Obsidian.
-2. Open the chat panel from the ribbon icon or command palette.
-3. Configure at least one model in settings.
-4. Open a note or PDF.
-5. Ask a question, use a quick prompt, or attach extra files.
-
-## Model Setup
-
-### Supported styles
-
-- OpenAI-compatible chat completions
-- Anthropic native messages API
-- Gemini native API
-- Codex responses API
-
-### PDF handling
-
-- OpenAI, Anthropic, and Gemini support native PDF input
-- Other providers fall back to extracted PDF text as context
-- PDF text extraction currently depends on runtime PDF.js availability and provider behavior
-
-### Built-in presets
-
-- OpenAI
-- Anthropic
-- Google Gemini
-- DeepSeek
-- OpenRouter
-- Groq
-- Moonshot
-- SiliconFlow
-- Ollama
-- Codex
-
-### Per-model settings
-
-- `Provider / Model Name`
-- `Auth Mode`
-- `API URL`
-- `API Key`
-- `Test`
-
-### Auth Mode
-
-#### `API Key`
-
-Use this for standard hosted providers such as OpenAI-compatible, Anthropic, Gemini, DeepSeek, OpenRouter, Groq, Moonshot, SiliconFlow, and others.
-
-#### `Codex Auth`
-
-Use your local Codex login credentials from:
-
-```text
-~/.codex/auth.json
-```
-
-Recommended Codex config:
-
-- Model: `gpt-5.4`
-- Auth Mode: `Codex Auth`
-- API URL: `https://chatgpt.com/backend-api/codex/responses`
-
-This is useful when you want to reuse your local Codex login instead of manually entering an API key.
-
-## Using Codex
-
-1. Run:
-
-```bash
-codex login
-```
-
-2. Add a model in plugin settings.
-3. Set `Auth Mode` to `Codex Auth`.
-4. Use `gpt-5.4` or another supported Codex model name.
-5. Click `Test` to verify the local auth state and model connection.
-
-## Quick Prompts
-
-Quick prompts appear above the input box and can be managed in settings.
-
-Each prompt has:
-
-- Button label
-- Prompt body
-
-## Saving Replies
-
-Assistant messages support:
-
-- `Copy`
-- `Save`
-
-When saving from a normal note, content is appended to that note.
-
-When saving from a PDF:
-
-- The plugin first tries to find an associated Markdown note
-- If none exists, it creates a new note in `inbox/`
-
-The new note includes frontmatter like:
-
-```yaml
-source: "[[path/to/file.pdf]]"
-Date: 2026-03-24T19:50:51.668Z
-base: "[[Inbox.base]]"
-Category:
-aliases:
-tags:
-  - llm-generated
-  - pdf-note
-```
-
-## History
-
-Conversation history is stored locally per active file.
-
-You can:
-
-- Start a new session
-- Open file-specific history
-- Switch between sessions
-- Delete old sessions
-
-## Data Files
-
-The plugin stores local runtime data inside its folder.
-
-### Important files
-
-- `data.json`: plugin settings
-- `llm-history.json`: saved chat history
-
-### Notes
-
-- Deleting `data.json` resets settings
-- Deleting `llm-history.json` clears chat history
-
-## Connection Testing
-
-Each model has a `Test` button in settings.
-
-- `API Key` mode sends a minimal test request
-- `Codex Auth` mode verifies local auth and then tests the model connection
-
-## Known Limitations
-
-- Codex Auth is mainly intended for desktop environments
-- Different providers may return different error formats
-- PDF extraction quality depends on provider and runtime capabilities
-- Rate limits and quota errors depend on the upstream model provider
-
-## Common Issues
-
-### `429`
-
-Usually means:
-
-- too many requests
-- quota exhausted
-- model access not available
-
-### Codex errors
-
-Make sure:
-
-```bash
-codex login
-```
-
-has completed successfully and `~/.codex/auth.json` exists.
-
-## Development
-
-Main source files:
-
-- `src/main.ts`
-- `src/ChatView.ts`
-- `src/llmClient.ts`
-- `styles.css`
-
-Build:
-
-```bash
-npm run build
-```
-
-## Acknowledgements
-
-Thanks to [`llm-for-zotero`](https://github.com/yilewang/llm-for-zotero) and its developers for providing the basic template and inspiration that made this vibe-coding build possible.
-
-## License
-
-MIT
+See https://docs.obsidian.md
