@@ -134,7 +134,7 @@ async function handleGoogleGeminiApi(
   const chatMsgs = messages.filter((m) => m.role !== "system");
 
   const contents = chatMsgs.map((m, index) => {
-    const parts: any[] = [{ text: m.content }];
+    const parts: unknown[] = [{ text: m.content }];
     if (
       m.role === "user" &&
       index === chatMsgs.length - 1 &&
@@ -155,7 +155,7 @@ async function handleGoogleGeminiApi(
     };
   });
 
-  const payload: any = {
+  const payload: unknown = {
     contents,
     generationConfig: {
       temperature: 0.7,
@@ -187,11 +187,11 @@ async function handleGoogleGeminiApi(
       response.json.candidates.length > 0
     ) {
       const parts = response.json.candidates[0].content.parts;
-      return parts.map((p: any) => p.text).join("");
+      return parts.map((p: unknown) => p.text).join("");
     } else {
       throw new Error(response.json?.error?.message || "Invalid response from Google API");
     }
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("Gemini API Error:", e);
     throw new Error(e.message || "Gemini Request Failed");
   }
@@ -216,7 +216,7 @@ async function handleAnthropicApi(
 
   const chatMessages = buildAnthropicMessages(messages, attachments);
 
-  const payload: any = {
+  const payload: unknown = {
     model,
     messages: chatMessages,
     max_tokens: 4000,
@@ -241,15 +241,15 @@ async function handleAnthropicApi(
 
     if (response.json && Array.isArray(response.json.content)) {
       return response.json.content
-        .filter((part: any) => part.type === "text")
-        .map((part: any) => part.text)
+        .filter((part: unknown) => part.type === "text")
+        .map((part: unknown) => part.text)
         .join("");
     } else {
       throw new Error(
         response.json?.error?.message || "Invalid response from Anthropic API"
       );
     }
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("Anthropic API Error:", e);
     throw new Error(e.message || "Anthropic Request Failed");
   }
@@ -268,7 +268,7 @@ async function handleOpenAiCompatibleApi(
     Authorization: `Bearer ${apiKey}`,
   };
 
-  const payload: any = isOfficialOpenAI
+  const payload: unknown = isOfficialOpenAI
     ? {
         model,
         messages: buildOpenAiChatMessages(messages, attachments),
@@ -303,7 +303,7 @@ async function handleOpenAiCompatibleApi(
     } else {
       throw new Error("Invalid response format from API");
     }
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("LLM API Error:", e);
     throw new Error(e.message || "API Request Failed");
   }
@@ -318,7 +318,7 @@ function buildAnthropicMessages(messages: Message[], attachments: Attachment[]) 
   return messages
     .filter((message) => message.role !== "system")
     .map((message, index) => {
-      const content: any[] = [];
+      const content: unknown[] = [];
 
       if (
         message.role === "user" &&
@@ -364,7 +364,7 @@ function buildOpenAiChatMessages(messages: Message[], attachments: Attachment[])
       return message;
     }
 
-    const content: any[] = pdfAttachments.map((attachment) => ({
+    const content: unknown[] = pdfAttachments.map((attachment) => ({
       type: "file",
       file: {
         filename: attachment.name,
@@ -439,7 +439,7 @@ function buildCodexPayload(model: string, messages: Message[]) {
   };
 }
 
-function extractCodexText(data: any): string {
+function extractCodexText(data: unknown): string {
   if (typeof data?.output_text === "string" && data.output_text.trim()) {
     return data.output_text;
   }

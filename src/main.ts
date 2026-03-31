@@ -68,16 +68,16 @@ export default class LlmPlugin extends Plugin {
 
 			if (
 				this.settings.hasOwnProperty("addedModels") &&
-				(this.settings as any).addedModels &&
-				(this.settings as any).addedModels.length > 0
+				(this.settings as unknown).addedModels &&
+				(this.settings as unknown).addedModels.length > 0
 			) {
-				(this.settings as any).addedModels.forEach((m: string) => {
+				(this.settings as unknown).addedModels.forEach((m: string) => {
 					this.settings.models.push({
 						name: m,
 						apiUrl:
-							(this.settings as any).apiUrl ||
+							(this.settings as unknown).apiUrl ||
 							"https://api.openai.com/v1/chat/completions",
-						apiKey: (this.settings as any).apiKey || "",
+						apiKey: (this.settings as unknown).apiKey || "",
 						authMode: "api_key",
 					});
 				});
@@ -91,9 +91,9 @@ export default class LlmPlugin extends Plugin {
 					this.settings.models.push({
 						name: m,
 						apiUrl:
-							(this.settings as any).apiUrl ||
+							(this.settings as unknown).apiUrl ||
 							"https://api.openai.com/v1/chat/completions",
-						apiKey: (this.settings as any).apiKey || "",
+						apiKey: (this.settings as unknown).apiKey || "",
 						authMode: "api_key",
 					});
 				});
@@ -103,9 +103,9 @@ export default class LlmPlugin extends Plugin {
 				this.settings.models.push({
 					name: this.settings.model,
 					apiUrl:
-						(this.settings as any).apiUrl ||
+						(this.settings as unknown).apiUrl ||
 						"https://api.openai.com/v1/chat/completions",
-					apiKey: (this.settings as any).apiKey || "",
+					apiKey: (this.settings as unknown).apiKey || "",
 					authMode: "api_key",
 				});
 			} else {

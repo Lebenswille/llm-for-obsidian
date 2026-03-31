@@ -171,7 +171,7 @@ export class ChatView extends ItemView {
 
     this.textarea.addEventListener("keydown", async (e) => {
       if (e.key === "Enter" && !e.shiftKey) {
-        if ((e as any).isComposing) return;
+        if ((e as unknown).isComposing) return;
         e.preventDefault();
         const text = this.textarea.value.trim();
         if (!text) return;
@@ -341,7 +341,7 @@ export class ChatView extends ItemView {
         this.messages = [...last.messages];
         this.attachedFiles = last.attached
           .map((p) => this.app.vault.getAbstractFileByPath(p))
-          .filter((f) => f instanceof TFile) as TFile[];
+          .filter((f) => f instanceof TFile);
       }
     } else {
       this.messages = [];
@@ -500,7 +500,7 @@ Do you want to continue?`
       const isAnthropic = config.apiUrl.includes("api.anthropic.com");
       const isOfficialOpenAI = config.apiUrl.includes("api.openai.com");
 
-      const nativeAttachments: any[] = [];
+      const nativeAttachments: unknown[] = [];
 
       for (const file of files) {
         if (file.extension === "pdf") {
@@ -514,7 +514,7 @@ Do you want to continue?`
             });
           }
 
-          const pdfjs = (window as any).pdfjsLib;
+          const pdfjs = (window as unknown).pdfjsLib;
           if (pdfjs) {
             try {
               const pdf = await pdfjs.getDocument({
@@ -525,7 +525,7 @@ Do you want to continue?`
                 const page = await pdf.getPage(i);
                 const textContent = await page.getTextContent();
                 contextText +=
-                  textContent.items.map((it: any) => it.str).join(" ") + "\n";
+                  textContent.items.map((it: unknown) => it.str).join(" ") + "\n";
               }
             } catch (e) {
               console.error("PDF parsing error:", e);
@@ -535,7 +535,7 @@ Do you want to continue?`
           file.extension === "md" ||
           file.extension === "txt"
         ) {
-          contextText += (await this.app.vault.read(file as TFile)) + "\n";
+          contextText += (await this.app.vault.read(file)) + "\n";
         }
       }
 
@@ -550,7 +550,7 @@ Do you want to continue?`
       );
 
       this.addMessage("assistant", res);
-    } catch (error: any) {
+    } catch (error: unknown) {
       this.addMessage("assistant", `**Error:** ${error.message}`);
     } finally {
       this.persistCurrentSession();
@@ -697,7 +697,7 @@ ${contextText.trim()}
           candidates.push(activeFile);
         } else if (activeFile.extension === "pdf") {
           const metadataCache = this.app.metadataCache;
-          const backlinks = (metadataCache as any).getBacklinksForFile?.(
+          const backlinks = (metadataCache as unknown).getBacklinksForFile?.(
             activeFile
           );
 
@@ -782,12 +782,12 @@ ${content}
           async () => {
             try {
               const newNote = await this.createAssociatedNoteForPdf(
-                activeFile as TFile,
+                activeFile,
                 content,
                 label
               );
               new Notice(`Created and appended to ${newNote.name}`);
-            } catch (err: any) {
+            } catch (err: unknown) {
               new Notice(`Failed to create note: ${err.message}`);
             }
           }
@@ -795,7 +795,7 @@ ${content}
       } else {
         new Notice("No active file or context found to create a note.");
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error("LLM Assistant Error:", e);
       new Notice(
         `Error: ${e.message || "Failed to append note"}`
@@ -942,7 +942,7 @@ ${content}
         this.messages = [...s.messages];
         this.attachedFiles = s.attached
           .map((p) => this.app.vault.getAbstractFileByPath(p))
-          .filter((f) => f instanceof TFile) as TFile[];
+          .filter((f) => f instanceof TFile);
         this.renderHistory();
         this.renderAttachments();
         overlay.remove();
@@ -972,7 +972,7 @@ ${content}
 class FileSuggestModal extends FuzzySuggestModal<TFile> {
   onChoose: (file: TFile) => void;
 
-  constructor(app: any, onChoose: (file: TFile) => void) {
+  constructor(app: unknown, onChoose: (file: TFile) => void) {
     super(app);
     this.onChoose = onChoose;
   }
@@ -994,7 +994,7 @@ class NoteSelectionModal extends FuzzySuggestModal<TFile> {
   items: TFile[];
   onChoose: (file: TFile) => void;
 
-  constructor(app: any, items: TFile[], onChoose: (file: TFile) => void) {
+  constructor(app: unknown, items: TFile[], onChoose: (file: TFile) => void) {
     super(app);
     this.items = items;
     this.onChoose = onChoose;
@@ -1020,7 +1020,7 @@ class ConfirmModal extends Modal {
   message: string;
   onConfirm: () => void;
 
-  constructor(app: any, message: string, onConfirm: () => void) {
+  constructor(app: unknown, message: string, onConfirm: () => void) {
     super(app);
     this.message = message;
     this.onConfirm = onConfirm;

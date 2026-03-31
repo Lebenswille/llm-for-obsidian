@@ -96,7 +96,7 @@ export class LlmSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: "General Preferences" });
+    ;
 
     new Setting(containerEl)
       .setName("System Prompt")
@@ -138,7 +138,7 @@ export class LlmSettingTab extends PluginSettingTab {
           });
       });
 
-    containerEl.createEl("h2", { text: "LLM for Obsidian Models" });
+    ;
 
     new Setting(containerEl)
       .setName("Popular Model Presets")
@@ -239,7 +239,7 @@ export class LlmSettingTab extends PluginSettingTab {
           dropdown.addOption("api_key", "API Key");
           dropdown.addOption("codex_auth", "Codex Auth");
           dropdown.setValue(m.authMode || "api_key");
-          dropdown.onChange(async (value: any) => {
+          dropdown.onChange(async (value: unknown) => {
             m.authMode = value;
 
             if (value === "codex_auth" && !m.apiUrl.trim()) {
@@ -321,7 +321,7 @@ Do you want to test this endpoint anyway?`
                 `Model test OK for ${modelName}. Response preview: ${result.preview}`,
                 8000
               );
-            } catch (error: any) {
+            } catch (error: unknown) {
               new Notice(
                 `Model test failed for ${modelName}: ${error.message}`,
                 10000
@@ -393,7 +393,7 @@ Do you want to test this endpoint anyway?`
         })
     );
 
-    containerEl.createEl("h2", { text: "Quick Prompts" });
+    new Setting(containerEl).setName("Quick Prompts").setHeading();
     containerEl.createEl("p", {
       text: "Manage the shortcut buttons shown above the chat input.",
       cls: "setting-item-description",
@@ -468,7 +468,7 @@ Do you want to test this endpoint anyway?`
     this.saveTimer = window.setTimeout(() => {
       this.plugin.saveSettings();
       this.saveTimer = null;
-    }, 250) as any as NodeJS.Timeout;
+    }, 250) as unknown as NodeJS.Timeout;
   }
 
   private getUniqueModelName(baseName: string): string {

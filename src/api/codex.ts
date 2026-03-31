@@ -152,13 +152,13 @@ export async function refreshCodexAccessToken(
   return nextAccessToken;
 }
 
-function getNodeRequire(): any {
-  const globalRequire = (globalThis as any).require;
+function getNodeRequire(): unknown {
+  const globalRequire = (globalThis as unknown).require;
   return typeof globalRequire === "function" ? globalRequire : null;
 }
 
 function getProcessEnvValue(key: string): string {
-  return (((globalThis as any).process?.env?.[key] || "") as string).trim() || "";
+  return (((globalThis as unknown).process?.env?.[key] || "") as string).trim() || "";
 }
 
 function getOsHomeDir(): string {
