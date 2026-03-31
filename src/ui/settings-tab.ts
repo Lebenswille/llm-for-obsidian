@@ -239,8 +239,8 @@ export class LlmSettingTab extends PluginSettingTab {
           dropdown.addOption("api_key", "API Key");
           dropdown.addOption("codex_auth", "Codex Auth");
           dropdown.setValue(m.authMode || "api_key");
-          dropdown.onChange(async (value: unknown) => {
-            m.authMode = value;
+          dropdown.onChange(async (value: string) => {
+            m.authMode = value as any;
 
             if (value === "codex_auth" && !m.apiUrl.trim()) {
               m.apiUrl = "https://chatgpt.com/backend-api/codex/responses";
@@ -323,7 +323,7 @@ Do you want to test this endpoint anyway?`
               );
             } catch (error: unknown) {
               new Notice(
-                `Model test failed for ${modelName}: ${error.message}`,
+                `Model test failed for ${modelName}: ${(error as any).message}`,
                 10000
               );
             } finally {

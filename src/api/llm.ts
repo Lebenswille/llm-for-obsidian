@@ -155,7 +155,7 @@ async function handleGoogleGeminiApi(
     };
   });
 
-  const payload: unknown = {
+  const payload: any = {
     contents,
     generationConfig: {
       temperature: 0.7,
@@ -183,15 +183,15 @@ async function handleGoogleGeminiApi(
 
     if (
       response.json &&
-      response.json.candidates &&
-      response.json.candidates.length > 0
+      (response.json as any).candidates &&
+      (response.json as any).candidates.length > 0
     ) {
-      const parts = response.json.candidates[0].content.parts;
-      return parts.map((p: unknown) => p.text).join("");
+      const parts = (response.json as any).candidates[0].content.parts;
+      return parts.map((p: any) => p.text).join("");
     } else {
-      throw new Error(response.json?.error?.message || "Invalid response from Google API");
+      throw new Error((response.json as any)?.error?.message || "Invalid response from Google API");
     }
-  } catch (e: unknown) {
+  } catch (e: any) {
     console.error("Gemini API Error:", e);
     throw new Error(e.message || "Gemini Request Failed");
   }
@@ -216,7 +216,7 @@ async function handleAnthropicApi(
 
   const chatMessages = buildAnthropicMessages(messages, attachments);
 
-  const payload: unknown = {
+  const payload: any = {
     model,
     messages: chatMessages,
     max_tokens: 4000,
@@ -239,17 +239,17 @@ async function handleAnthropicApi(
       throw: true,
     });
 
-    if (response.json && Array.isArray(response.json.content)) {
-      return response.json.content
-        .filter((part: unknown) => part.type === "text")
-        .map((part: unknown) => part.text)
+    if (response.json && Array.isArray((response.json as any).content)) {
+      return (response.json as any).content
+        .filter((part: any) => part.type === "text")
+        .map((part: any) => part.text)
         .join("");
     } else {
       throw new Error(
-        response.json?.error?.message || "Invalid response from Anthropic API"
+        (response.json as any)?.error?.message || "Invalid response from Anthropic API"
       );
     }
-  } catch (e: unknown) {
+  } catch (e: any) {
     console.error("Anthropic API Error:", e);
     throw new Error(e.message || "Anthropic Request Failed");
   }
@@ -268,7 +268,7 @@ async function handleOpenAiCompatibleApi(
     Authorization: `Bearer ${apiKey}`,
   };
 
-  const payload: unknown = isOfficialOpenAI
+  const payload: any = isOfficialOpenAI
     ? {
         model,
         messages: buildOpenAiChatMessages(messages, attachments),
@@ -296,14 +296,14 @@ async function handleOpenAiCompatibleApi(
 
     if (
       response.json &&
-      response.json.choices &&
-      response.json.choices.length > 0
+      (response.json as any).choices &&
+      (response.json as any).choices.length > 0
     ) {
-      return response.json.choices[0].message.content;
+      return (response.json as any).choices[0].message.content;
     } else {
       throw new Error("Invalid response format from API");
     }
-  } catch (e: unknown) {
+  } catch (e: any) {
     console.error("LLM API Error:", e);
     throw new Error(e.message || "API Request Failed");
   }
@@ -439,7 +439,7 @@ function buildCodexPayload(model: string, messages: Message[]) {
   };
 }
 
-function extractCodexText(data: unknown): string {
+function extractCodexText(data: any): string {
   if (typeof data?.output_text === "string" && data.output_text.trim()) {
     return data.output_text;
   }

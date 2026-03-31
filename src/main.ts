@@ -67,22 +67,22 @@ export default class LlmPlugin extends Plugin {
 			this.settings.models = [];
 
 			if (
-				this.settings.hasOwnProperty("addedModels") &&
-				(this.settings as unknown).addedModels &&
-				(this.settings as unknown).addedModels.length > 0
+				(this.settings as any).hasOwnProperty("addedModels") &&
+				(this.settings as any).addedModels &&
+				(this.settings as any).addedModels.length > 0
 			) {
-				(this.settings as unknown).addedModels.forEach((m: string) => {
+				(this.settings as any).addedModels.forEach((m: string) => {
 					this.settings.models.push({
 						name: m,
 						apiUrl:
-							(this.settings as unknown).apiUrl ||
+							(this.settings as any).apiUrl ||
 							"https://api.openai.com/v1/chat/completions",
-						apiKey: (this.settings as unknown).apiKey || "",
+						apiKey: (this.settings as any).apiKey || "",
 						authMode: "api_key",
 					});
 				});
-			} else if (this.settings.model && this.settings.model.includes(",")) {
-				const names = this.settings.model
+			} else if ((this.settings as any).model && (this.settings as any).model.includes(",")) {
+				const names = ((this.settings as any).model as string)
 					.split(",")
 					.map((s) => s.trim())
 					.filter(Boolean);
@@ -91,21 +91,21 @@ export default class LlmPlugin extends Plugin {
 					this.settings.models.push({
 						name: m,
 						apiUrl:
-							(this.settings as unknown).apiUrl ||
+							(this.settings as any).apiUrl ||
 							"https://api.openai.com/v1/chat/completions",
-						apiKey: (this.settings as unknown).apiKey || "",
+						apiKey: (this.settings as any).apiKey || "",
 						authMode: "api_key",
 					});
 				});
 
 			this.settings.model = names[0] || DEFAULT_SETTINGS.model;
-			} else if (this.settings.model) {
+			} else if ((this.settings as any).model) {
 				this.settings.models.push({
-					name: this.settings.model,
+					name: (this.settings as any).model,
 					apiUrl:
-						(this.settings as unknown).apiUrl ||
+						(this.settings as any).apiUrl ||
 						"https://api.openai.com/v1/chat/completions",
-					apiKey: (this.settings as unknown).apiKey || "",
+					apiKey: (this.settings as any).apiKey || "",
 					authMode: "api_key",
 				});
 			} else {
