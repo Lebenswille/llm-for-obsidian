@@ -2,13 +2,13 @@
 
 [English](README.md) | [中文](README.zh-CN.md)
 
-# LLM for Obsidian
+# LLM Assistant
 
 An Obsidian sidebar AI assistant that integrates with your notes, attachments, and PDFs for Q&A, summarization, translation, and organization.
 
 ## Introduction
 
-`LLM for Obsidian` aims not to be a standalone chat tool, but to embed LLM capabilities directly into your Obsidian workflow.
+`LLM Assistant` aims not to be a standalone chat tool, but to embed LLM capabilities directly into your Obsidian workflow.
 
 It is suitable for:
 - Asking questions about current notes or PDFs.
@@ -37,7 +37,7 @@ It is suitable for:
 
 Place the plugin in:
 ```text
-.obsidian/plugins/llm-for-obsidian
+.obsidian/plugins/llm-assistant
 ```
 
 At minimum, you need:
