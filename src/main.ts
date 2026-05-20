@@ -11,7 +11,7 @@ export default class LlmPlugin extends Plugin {
 
 		this.registerView(CHAT_VIEW_TYPE, (leaf) => new ChatView(leaf, this));
 
-		this.addRibbonIcon("bot", "LLM Assistant", () => {
+		this.addRibbonIcon("bot", "Note Copilot", () => {
 			this.activateView();
 		});
 

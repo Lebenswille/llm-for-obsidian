@@ -96,7 +96,7 @@ export class LlmSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: "LLM Assistant Settings" });
+    containerEl.createEl("h2", { text: "Note Copilot Settings" });
 
     new Setting(containerEl)
       .setName("System Prompt")

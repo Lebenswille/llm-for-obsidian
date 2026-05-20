@@ -2,13 +2,13 @@
 
 [English](README.md) | [中文](README.zh-CN.md)
 
-# LLM Assistant
+# Note Copilot
 
 An Obsidian sidebar AI assistant that integrates with your notes, attachments, and PDFs for Q&A, summarization, translation, and organization.
 
 ## Introduction
 
-`LLM Assistant` aims not to be a standalone chat tool, but to embed LLM capabilities directly into your Obsidian workflow.
+`Note Copilot` aims not to be a standalone chat tool, but to embed LLM capabilities directly into your Obsidian workflow.
 
 It is suitable for:
 - Asking questions about current notes or PDFs.
@@ -37,7 +37,7 @@ It is suitable for:
 
 Place the plugin in:
 ```text
-.obsidian/plugins/llm-assistant
+.obsidian/plugins/note-copilot
 ```
 
 At minimum, you need:

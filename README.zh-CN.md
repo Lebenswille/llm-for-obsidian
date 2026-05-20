@@ -2,13 +2,13 @@
 
 中文 | [English](README.md)
 
-# LLM Assistant
+# Note Copilot
 
 一个 Obsidian 侧边栏 AI 助手，可结合当前笔记、附件和 PDF 进行问答、总结、翻译与整理。
 
 ## 项目简介
 
-`LLM Assistant` 的目标不是做一个独立聊天工具，而是把大模型能力直接嵌入 Obsidian 工作流。
+`Note Copilot` 的目标不是做一个独立聊天工具，而是把大模型能力直接嵌入 Obsidian 工作流。
 
 它适合：
 
@@ -39,7 +39,7 @@
 将插件放到：
 
 ```text
-.obsidian/plugins/llm-assistant
+.obsidian/plugins/note-copilot
 ```
 
 运行时至少需要：

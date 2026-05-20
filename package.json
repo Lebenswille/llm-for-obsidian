@@ -1,7 +1,7 @@
 {
-	"name": "llm-assistant",
+	"name": "note-copilot",
 	"version": "1.1.3",
-	"description": "LLM assistant in the right side panel",
+	"description": "AI copilot in the right side panel",
 	"main": "main.js",
 	"type": "module",
 	"scripts": {

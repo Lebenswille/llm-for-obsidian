@@ -1,9 +1,9 @@
 {
-  "id": "llm-assistant",
-  "name": "LLM Assistant",
+  "id": "note-copilot",
+  "name": "Note Copilot",
   "version": "1.1.5",
   "minAppVersion": "1.5.0",
-  "description": "LLM assistant in the right side panel",
+  "description": "AI copilot in the right side panel",
   "author": "Lebenswille",
   "authorUrl": "https://github.com/Lebenswille",
   "isDesktopOnly": false

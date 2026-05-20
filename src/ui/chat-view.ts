@@ -41,7 +41,7 @@ export class ChatView extends ItemView {
   }
 
   getDisplayText() {
-    return "LLM Assistant";
+    return "Note Copilot";
   }
 
   getIcon() {
@@ -57,7 +57,7 @@ export class ChatView extends ItemView {
     // Header
     const headerContainer = container.createDiv({ cls: "llm-header" });
     headerContainer.createEl("h3", {
-      text: "LLM Assistant",
+      text: "Note Copilot",
       cls: "llm-header-title",
     });
 
@@ -796,7 +796,7 @@ ${content}
         new Notice("No active file or context found to create a note.");
       }
     } catch (e: unknown) {
-      console.error("LLM Assistant Error:", e);
+      console.error("Note Copilot Error:", e);
       new Notice(
         `Error: ${(e as any).message || "Failed to append note"}`
       );
