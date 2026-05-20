@@ -1,7 +1,7 @@
 {
   "id": "note-copilot",
   "name": "Note Copilot",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "minAppVersion": "1.5.0",
   "description": "AI copilot in the right side panel",
   "author": "Lebenswille",
